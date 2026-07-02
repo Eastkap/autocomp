@@ -1,0 +1,37 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# autocomp ships its skill + command — override the global ~/.gitignore_global .claude/ rule
+!.claude/
+!.claude/**
+# ...but not runtime locks/state the loop writes
+.claude/scheduled_tasks.lock
+
+# CLAUDE.md is autocomp's constitution — override the global ~/.gitignore_global CLAUDE.md rule
+!CLAUDE.md
+
+# OS / tooling
+.DS_Store
+node_modules/
+__pycache__/
+*.log
+
+# The live company instance — charter, state, memory, site, manual todos.
+# This is THIS venture's private data (gitignored). The public framework ships the
+# scaffold as private.example/ — copy it to private/ to run your own venture.
+private/
+
+# local-only Claude Code permissions
+.claude/settings.local.json
+
+# kanban: project-specific browser config (anon key — public-safe but env-specific)
+kanban/config.js
+
+# wrangler local state
+.wrangler/
+**/.wrangler/
+
+# watchdog alert stamp (runtime)
+private/state/.watchdog-last-alert

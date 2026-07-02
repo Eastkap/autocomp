@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>autocomp sync</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="bar">
+    <div class="brand">autocomp <span>sync</span></div>
+    <div class="who" id="who"></div>
+    <button id="auth-btn" class="btn">Sign in with Google</button>
+  </header>
+
+  <main id="board" class="board" hidden>
+    <form id="new-task" class="new-task">
+      <input id="nt-title" placeholder="New task for the agent…" required />
+      <select id="nt-priority" title="priority">
+        <option value="0">normal</option>
+        <option value="1">high</option>
+        <option value="2">urgent</option>
+      </select>
+      <button class="btn primary" type="submit">Add</button>
+    </form>
+    <div class="cols">
+      <section class="col" data-status="todo"><h2>To do</h2><div class="drop"></div></section>
+      <section class="col" data-status="doing"><h2>Doing</h2><div class="drop"></div></section>
+      <section class="col" data-status="blocked"><h2>Blocked</h2><div class="drop"></div></section>
+      <section class="col" data-status="done"><h2>Done</h2><div class="drop"></div></section>
+    </div>
+  </main>
+
+  <p id="gate" class="gate">Sign in with your Google account to view the board.</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

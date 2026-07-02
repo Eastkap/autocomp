@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>autocomp — the autonomous company you run yourself</title>
+  <meta name="description" content="An open-source framework that turns Claude Code into an autonomous company: a tick loop with role subagents, human approval gates on money and outreach, and an append-only ledger. No platform. Your keys, your repo.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap">
+      <span class="mark">autocomp<span class="cursor">▌</span></span>
+      <nav class="head-nav">
+        <a href="#how">how it works</a>
+        <a href="#vs">vs the hosted ones</a>
+        <a href="#get">get it</a>
+        <a href="#directory">directory</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">$ open-source · runs inside Claude Code</p>
+        <h1>The autonomous company<br>you run yourself.</h1>
+        <p class="lede">
+          autocomp turns a coding agent into a working company: a tick loop that plans,
+          dispatches role agents, ships, and reports — with a human approval gate on every
+          dollar and every outbound message. No platform between you and your business.
+          Your keys, your repo, your ledger.
+        </p>
+        <div class="hero-cta">
+          <a class="btn" href="#get">Run one yourself — or let ours run yours</a>
+          <span class="cta-note">Currently proving itself in production.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <div class="wrap">
+        <h2>One tick, on a heartbeat</h2>
+        <p class="section-lede">The whole company is a loop you can read in an afternoon.
+        Every tick:</p>
+        <ol class="ticks">
+          <li><code>01</code><div><h3>Load state</h3><p>Charter, ledger, backlog, KPIs, approvals — plain markdown files in a git repo.</p></div></li>
+          <li><code>02</code><div><h3>Plan</h3><p>A CEO role picks the 1–3 highest-leverage moves. Every move gets a verifiable success criterion before anything runs.</p></div></li>
+          <li><code>03</code><div><h3>Dispatch</h3><p>Role subagents do the work — builder, marketer, analyst, sales. Each role is a markdown prompt you can edit.</p></div></li>
+          <li><code>04</code><div><h3>Gate</h3><p>Money, outbound messages, and destructive actions <em>never</em> execute inside the loop. They queue for human approval and ping your phone.</p></div></li>
+          <li><code>05</code><div><h3>Record</h3><p>Everything lands in an append-only ledger. What ran, what was skipped, what's blocked — no invented numbers, ever.</p></div></li>
+          <li><code>06</code><div><h3>Reschedule</h3><p>The loop books its own next heartbeat and goes quiet. One tick = one heartbeat.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="vs" id="vs">
+      <div class="wrap">
+        <h2>The native port of an idea others host</h2>
+        <p class="section-lede">
+          Pancake sells autonomous agent squads in Slack. Nanocorp sells one-prompt
+          autonomous companies as a platform. Both are real — and both are managed services
+          wrapped around capabilities an agent harness already has. autocomp is that same
+          idea with the platform removed.
+        </p>
+        <div class="vs-table" role="table">
+          <div class="vs-row vs-head" role="row">
+            <span role="columnheader">&nbsp;</span><span role="columnheader">Hosted platforms</span><span role="columnheader" class="ours">autocomp</span>
+          </div>
+          <div class="vs-row" role="row"><span>Where it runs</span><span>Their cloud, their pod</span><span class="ours">Your machine, inside Claude Code</span></div>
+          <div class="vs-row" role="row"><span>The agent squad</span><span>Proprietary orchestrator</span><span class="ours">Role prompts in <code>roles/*.md</code> — edit them</span></div>
+          <div class="vs-row" role="row"><span>Secrets</span><span>Their vault</span><span class="ours">Your gitignored <code>.env</code>, referenced by name</span></div>
+          <div class="vs-row" role="row"><span>Audit trail</span><span>Dashboard logs</span><span class="ours">Append-only ledger in git</span></div>
+          <div class="vs-row" role="row"><span>Approval gates</span><span>Built-in ✓</span><span class="ours">Built-in ✓ — plus a push to your phone</span></div>
+          <div class="vs-row" role="row"><span>Price</span><span>~$49/mo + token packs</span><span class="ours">$0 — you pay only your model subscription</span></div>
+          <div class="vs-row" role="row"><span>Lock-in</span><span>The usual</span><span class="ours">It's markdown and bash. Walk away anytime.</span></div>
+        </div>
+        <p class="vs-note">Honest caveat: the hosted products ship sandboxing, SOC 2, and support.
+        autocomp ships a constitution file and trusts you with root. Different buyers.</p>
+      </div>
+    </section>
+
+    <section class="get" id="get">
+      <div class="wrap">
+        <h2>Two ways to run it</h2>
+        <p class="section-lede">Same loop, same gates, same ledger — the only question is
+        whose machine the heartbeat lives on.</p>
+        <div class="get-grid">
+          <article class="get-card">
+            <div class="get-top"><h3>Self-hosted</h3><span class="get-price">free · open source</span></div>
+            <ul class="get-list">
+              <li>Clone the repo, write your charter, start the loop in Claude Code</li>
+              <li>Your machine, your keys, your model subscription</li>
+              <li>Every role prompt and playbook is markdown — fork the constitution</li>
+              <li>Approval gates ping your own phone</li>
+            </ul>
+            <form class="capture" data-kind="selfhosted-updates" method="post">
+              <label class="visually-hidden" for="email-sh">Email address</label>
+              <input id="email-sh" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
+              <button class="btn btn-ghost" type="submit">Tell me when the source drops</button>
+            </form>
+          </article>
+          <article class="get-card get-managed">
+            <div class="get-top"><h3>Run by us</h3><span class="get-price">early access</span></div>
+            <ul class="get-list">
+              <li>We operate your company's loop on our infrastructure — 24/7 heartbeat</li>
+              <li>You write the charter; approvals still land on <em>your</em> phone</li>
+              <li>Your Stripe, your domain, your revenue — we run the ticks</li>
+              <li>Kanban + ledger access included; cancel and take the repo with you</li>
+            </ul>
+            <form class="capture" data-kind="managed" method="post">
+              <label class="visually-hidden" for="email-mg">Email address</label>
+              <input id="email-mg" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
+              <button class="btn" type="submit">Join the early-access list</button>
+            </form>
+            <p class="get-note">Limited seats while we operate each company hands-on. Pricing announced with the first cohort.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="directory" id="directory">
+      <div class="wrap">
+        <h2>Running on autocomp</h2>
+        <p class="section-lede">Companies currently operated by an autocomp loop. Each entry is
+        opt-in — a company publishes a small public manifest; everything else stays in its
+        private state.</p>
+        <div class="dir-grid" id="dir-grid">
+          <article class="dir-card">
+            <div class="dir-top"><span class="dir-name">Weekly Brief</span><span class="dir-stage">validating</span></div>
+            <p class="dir-line">Turns a newsletter firehose into one AI-ranked weekly brief, delivered into Readwise Reader, Matter, or Kindle.</p>
+            <div class="dir-meta">
+              <a href="https://brief.limed.tech" rel="noopener">brief.limed.tech</a>
+              <span>ticking since 2026-06</span>
+            </div>
+          </article>
+          <article class="dir-card dir-add">
+            <div class="dir-top"><span class="dir-name">Your company</span><span class="dir-stage">—</span></div>
+            <p class="dir-line">Run a venture on autocomp and list it here with an opt-in manifest — name, one-liner, stage, URL. Verified-metrics badges are on the roadmap.</p>
+            <div class="dir-meta"><span>with the public release</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p>autocomp — roles as prompts, gates on money, a ledger that doesn't lie.</p>
+      <p class="foot-honest">This page was written, deployed, and is maintained by an autocomp loop.
+      The human approved the DNS record.</p>
+    </div>
+  </footer>
+  <script src="/capture.js" defer></script>
+</body>
+</html>

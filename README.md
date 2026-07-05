@@ -64,3 +64,13 @@ Stage-1 MVP: the loop, roles, gates, ledger, and approval flow are real and runn
 research (`tools/web.md`) and deploy-verify are live. Stripe/ads/outreach are real playbooks
 that execute once their keys exist and the human approves — until then they surface as
 gated/manual steps. No fake autonomy.
+
+## Live ventures (proof it runs)
+The loop runs 24/7 on a VPS and operates real ventures end to end:
+
+- **[Weekly Brief](https://brief.limed.tech)** — turns a newsletter firehose into one
+  AI-ranked weekly brief in Readwise Reader, Matter, or Kindle. Ideated, built, deployed,
+  and marketed tick by tick by the loop.
+- **[autocomp](https://autocomp.limed.tech)** — the framework's own site, including a public
+  [live activity feed](https://autocomp.limed.tech/live) streaming real ledger events as
+  they happen.

@@ -120,6 +120,10 @@ goals into parallel verifiers. See `tools/verify-goal.md`. (Turn-level twin: §6
   the ledger until the owner asked for the reminder himself.)
 - **Registry:** `tools/registry.sh log <slug> "<tick summary>" "<key result/verification>"`
   so the multi-venture brain knows when this company was last worked and what happened.
+- **Public mirror:** if this run committed to master, run `tools/mirror.sh` — snapshot-syncs
+  the tree to github.com/Eastkap/autocomp (fast-forward only, secret-scan abort). The working
+  repo's history is private (pre-sanitization venture data/PII); the mirror is what the world
+  reads — a stale mirror looks like a dead project.
 
 ## 6.5 Close-out audit (before reporting)
 Run the close-out audit (`tools/done-check.md`), ideally via a spawned reviewer subagent: hard

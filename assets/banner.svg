@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1520 460" role="img" aria-label="autocomp — an autonomous company as a tick loop in Claude Code">
+  <defs>
+    <style>
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 30px; }
+      .dim  { fill: #8b949e; }
+      .txt  { fill: #c9d1d9; }
+      .grn  { fill: #3fb950; }
+      .amb  { fill: #d29922; }
+      .blu  { fill: #58a6ff; }
+    </style>
+  </defs>
+
+  <!-- terminal window -->
+  <rect x="10" y="10" width="1500" height="440" rx="18" fill="#0d1117" stroke="#30363d" stroke-width="3"/>
+  <!-- title bar -->
+  <line x1="10" y1="86" x2="1510" y2="86" stroke="#21262d" stroke-width="3"/>
+  <circle cx="58" cy="48" r="13" fill="#ff5f56"/>
+  <circle cx="102" cy="48" r="13" fill="#ffbd2e"/>
+  <circle cx="146" cy="48" r="13" fill="#27c93f"/>
+  <text x="760" y="59" text-anchor="middle" class="mono dim">autocomp — the company is a loop</text>
+
+  <!-- body -->
+  <text x="56" y="148" class="mono"><tspan class="grn">$</tspan><tspan class="txt"> /autocomp start</tspan></text>
+  <text x="56" y="200" class="mono"><tspan class="dim">tick 47 · read state → plan → dispatch → gate → record → reschedule</tspan></text>
+  <text x="56" y="252" class="mono"><tspan class="blu">  ceo</tspan><tspan class="dim">        picks the highest-leverage move           </tspan><tspan class="grn">✓</tspan></text>
+  <text x="56" y="304" class="mono"><tspan class="blu">  builder</tspan><tspan class="dim">    ships the page, verifies it returns 200   </tspan><tspan class="grn">✓</tspan></text>
+  <text x="56" y="356" class="mono"><tspan class="blu">  marketer</tspan><tspan class="dim">   drafts outreach                            </tspan><tspan class="amb">⏸ gated</tspan></text>
+  <text x="56" y="412" class="mono"><tspan class="amb">⏸ approval required</tspan><tspan class="dim"> — outbound send waits for one human tap · </tspan><tspan class="grn">ledger appended</tspan></text>
+</svg>

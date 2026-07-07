@@ -5,6 +5,7 @@
 #
 # Usage:
 #   tools/tasks.sh list                         # open tasks the agent must act on (todo/doing)
+#   tools/tasks.sh list-all                     # EVERY open card (todo/doing/blocked, both assignees) — board triage
 #   tools/tasks.sh add "title" [priority] [notes] [assignee]   # push a task; assignee=human (default) or agent
 #                                               # assignee=agent = a self-reminder the next ticks pick up via list
 #   tools/tasks.sh update <id> <status> [notes] # set status (todo|doing|done|blocked) + optional notes
@@ -32,6 +33,11 @@ case "${1:-list}" in
       "$API?assignee=eq.agent&status=in.(todo,doing)&order=priority.desc,created_at.asc&select=id,title,status,priority,notes,created_by,created_at"
     echo
     ;;
+  list-all)
+    curl -fsS "${hdr[@]}" \
+      "$API?status=in.(todo,doing,blocked)&order=priority.desc,created_at.asc&select=id,title,status,priority,assignee,notes,created_by,created_at"
+    echo
+    ;;
   add)
     title="${2:?title required}"; prio="${3:-0}"; notes="${4:-}"; assignee="${5:-human}"
     case "$assignee" in human|agent) ;; *) echo "tasks.sh: assignee must be human or agent" >&2; exit 1;; esac
@@ -54,5 +60,5 @@ case "${1:-list}" in
     echo
     ;;
   *)
-    echo "usage: tasks.sh {list|add|get|update} ..." >&2; exit 1;;
+    echo "usage: tasks.sh {list|list-all|add|get|update} ..." >&2; exit 1;;
 esac

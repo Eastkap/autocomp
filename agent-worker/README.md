@@ -29,7 +29,18 @@ claims jobs whose `identity` is in its `IDENTITIES` env list, enforced in the
 for **safe, low-risk, reversible** tasks. Anything sensitive (spend, sending as you,
 destructive) stays gated upstream — don't enqueue it.
 
-## Setup
+## Quick start (native, no Docker) — "just run a loop on my Chrome"
+
+```bash
+git clone git@github.com:Eastkap/autocomp-live.git && cd autocomp-live/agent-worker
+cp .env.example .env        # fill SUPABASE_URL, SUPABASE_SECRET_KEY, ANTHROPIC_API_KEY
+./run-local.sh             # first run prints the one-time login step; re-run after
+```
+`run-local.sh` makes a venv, installs browser-use + Chromium, and starts the **consumer
+loop** — it polls the queue (~every 8s) and runs whatever task the loop enqueues, forever,
+until you Ctrl-C. That's the whole model: you leave it running, I send tasks.
+
+## Setup (Docker, always-on)
 
 On an always-on **residential-IP** homelab box with Docker:
 

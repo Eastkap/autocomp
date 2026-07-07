@@ -11,7 +11,9 @@ that shipped things actually work.
 | **Notion pages** (e.g. taaft frameworks) | ✅ | **chrome MCP** — `navigate` then `get_page_text`; renders the SPA incl. code-block prompts. No key. |
 | JS-rendered / client-side pages | ✅ | chrome MCP (same pattern) |
 | **Reddit** | ❌ needs auth | Hard auth gate (not a bot challenge). `WebFetch`, chrome MCP, curl, `r.jina.ai`, AND CloakBrowser stealth all get "log in or use your developer token." Only real fixes: a **Reddit OAuth token** (free app at reddit.com/prefs/apps) or a **logged-in `--persistent` CloakBrowser profile** (see below). |
-| Antibot sites (Cloudflare / Akamai / DataDome) | ✅ | **browser-search / CloakBrowser** — installed at `~/dev/browser-search` (see below). Beats these; does NOT beat Reddit's auth gate. |
+| Antibot sites (Cloudflare / Akamai / DataDome) | ✅ | **TRAWL** first (real Camoufox Firefox, FlareSolverr-v2 drop-in, `tools/trawl.sh` — see `tools/trawl.md`) → **browser-search / CloakBrowser** (`~/dev/browser-search`) as fallback. Both beat bot walls; neither beats Reddit's auth gate. |
+| In-page captchas (Turnstile / hCaptcha / reCAPTCHA v2 / GeeTest) | ✅ | **TRAWL** — solves them in-browser (`tools/trawl.md`). Needs `TRAWL_URL` set. |
+| Render JS pages / fill+submit forms / screenshots | ✅ | **Playwright + Chromium** (`node browser/browser.mjs fetch\|shot`, `--profile <dir>` for persistent logins). Installed + verified. The base browser tier; no CAPTCHA solving (use TRAWL for that). |
 
 **Notion read recipe (chrome):** `tabs_context_mcp` → `navigate(url)` → `get_page_text`.
 Notion is a SPA, so to switch between pages do a **fresh navigate per page** (same-domain

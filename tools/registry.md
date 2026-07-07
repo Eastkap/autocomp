@@ -19,6 +19,11 @@ history. This is how a single loop runs multiple ventures without starving any.
    once per tick with a summary; sub-agent results use their role as `actor`.
 4. `tools/registry.sh history <slug>` answers "what has this company been doing lately"
    without reading its whole ledger.
+5. **Interactive sessions log too** (actor `cofounder`): any substantial co-founder-session
+   work on a venture ends with `registry.sh log <slug> "<summary>" "<result>" cofounder` —
+   the kanban's **Ticks** tab (private.limed.tech) renders this activity log, and unlogged
+   session work is invisible there. Cron ticks show as actor `loop`; measured cost rows
+   (actor `harness`) fold in as $-badges.
 
 ## Rules
 - The ledger (`private/state/ledger.md`) stays the authoritative audit record — the

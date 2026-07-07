@@ -5,13 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex" />
   <title>autocomp sync</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=10" />
 </head>
 <body>
   <header class="bar">
     <div class="brand">autocomp <span>sync</span></div>
+    <nav class="tabs" id="tabs" hidden>
+      <button class="tab on" data-view="board" type="button">Board</button>
+      <button class="tab" data-view="ticks" type="button">Ticks</button>
+    </nav>
     <div class="who" id="who"></div>
-    <button id="auth-btn" class="btn">Sign in with Google</button>
+    <button id="auth-btn" class="btn" type="button">Sign in with Google</button>
   </header>
 
   <main id="board" class="board" hidden>
@@ -32,10 +36,30 @@
     </div>
   </main>
 
+  <main id="ticks" class="ticks" hidden>
+    <p class="ticks-intro">Every run of the company, newest first — cron ticks and interactive sessions alike. Cost badges are measured, not estimated.</p>
+    <div id="ticks-list"></div>
+  </main>
+
   <p id="gate" class="gate">Sign in with your Google account to view the board.</p>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+  <div id="modal" class="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="m-title">
+      <button class="modal-x" data-close title="close" aria-label="close">✕</button>
+      <h2 id="m-title" class="m-title"></h2>
+      <div class="m-badges"></div>
+      <div class="m-cta"></div>
+      <div class="m-note"></div>
+      <div class="m-move"></div>
+      <div class="m-meta"></div>
+      <div class="m-actions"><button class="btn m-del" type="button">Delete task</button></div>
+    </div>
+  </div>
+
+  <script src="vendor/supabase.min.js"></script>
+  <script>window.supabase || document.write('<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"><\/script>');</script>
+  <script src="config.js?v=10"></script>
+  <script src="app.js?v=10"></script>
 </body>
 </html>

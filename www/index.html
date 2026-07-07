@@ -13,9 +13,11 @@
       <span class="mark">autocomp<span class="cursor">▌</span></span>
       <nav class="head-nav">
         <a href="#how">how it works</a>
-        <a href="#vs">vs the hosted ones</a>
+        <a href="#vs">vs the funded ones</a>
+        <a href="/live">live</a>
         <a href="#get">get it</a>
         <a href="#directory">directory</a>
+        <a href="https://github.com/Eastkap/autocomp" rel="noopener">github</a>
       </nav>
     </div>
   </header>
@@ -33,7 +35,7 @@
         </p>
         <div class="hero-cta">
           <a class="btn" href="#get">Run one yourself — or let ours run yours</a>
-          <span class="cta-note">Currently proving itself in production.</span>
+          <span class="cta-note">Source is live: <a href="https://github.com/Eastkap/autocomp" rel="noopener">github.com/Eastkap/autocomp</a></span>
         </div>
       </div>
     </section>
@@ -56,26 +58,28 @@
 
     <section class="vs" id="vs">
       <div class="wrap">
-        <h2>The native port of an idea others host</h2>
+        <h2>Same job as the funded platforms. Opposite defaults.</h2>
         <p class="section-lede">
-          Pancake sells autonomous agent squads in Slack. Nanocorp sells one-prompt
-          autonomous companies as a platform. Both are real — and both are managed services
-          wrapped around capabilities an agent harness already has. autocomp is that same
-          idea with the platform removed.
+          Polsia and NanoCorp raised millions to run autonomous companies as a hosted platform,
+          and take a cut of what yours earns. autocomp does the same job open-source, on your own
+          keys: a gate on every dollar, a ledger that can't be quietly edited, and nobody skimming
+          your revenue.
         </p>
         <div class="vs-table" role="table">
           <div class="vs-row vs-head" role="row">
-            <span role="columnheader">&nbsp;</span><span role="columnheader">Hosted platforms</span><span role="columnheader" class="ours">autocomp</span>
+            <span role="columnheader">&nbsp;</span><span role="columnheader">The funded platforms</span><span role="columnheader" class="ours">autocomp</span>
           </div>
-          <div class="vs-row" role="row"><span>Where it runs</span><span>Their cloud, their pod</span><span class="ours">Your machine, inside Claude Code</span></div>
-          <div class="vs-row" role="row"><span>The agent squad</span><span>Proprietary orchestrator</span><span class="ours">Role prompts in <code>roles/*.md</code> — edit them</span></div>
-          <div class="vs-row" role="row"><span>Secrets</span><span>Their vault</span><span class="ours">Your gitignored <code>.env</code>, referenced by name</span></div>
-          <div class="vs-row" role="row"><span>Audit trail</span><span>Dashboard logs</span><span class="ours">Append-only ledger in git</span></div>
-          <div class="vs-row" role="row"><span>Approval gates</span><span>Built-in ✓</span><span class="ours">Built-in ✓ — plus a push to your phone</span></div>
-          <div class="vs-row" role="row"><span>Price</span><span>~$49/mo + token packs</span><span class="ours">$0 — you pay only your model subscription</span></div>
-          <div class="vs-row" role="row"><span>Lock-in</span><span>The usual</span><span class="ours">It's markdown and bash. Walk away anytime.</span></div>
+          <div class="vs-row" role="row"><span>Model</span><span>Polsia, NanoCorp — hosted, closed source</span><span class="ours">Open source, runs in Claude Code on your keys</span></div>
+          <div class="vs-row" role="row"><span>Cut of your revenue</span><span>Polsia: 20% of revenue + ad spend. NanoCorp: 20% withdrawal fee</span><span class="ours">None. You keep all of it.</span></div>
+          <div class="vs-row" role="row"><span>The approval gate</span><span>Polsia: none (its top complaint). NanoCorp: manual, behind an "autonomous" pitch</span><span class="ours">A hard gate on every spend and send, plus a push to your phone</span></div>
+          <div class="vs-row" role="row"><span>Audit trail</span><span>Dashboard logs</span><span class="ours">Append-only ledger in git — can't be edited to hide a failure</span></div>
+          <div class="vs-row" role="row"><span>Lock-in</span><span>Their cloud, their vault</span><span class="ours">It's markdown and bash. Fork it, walk away anytime.</span></div>
+          <div class="vs-row" role="row"><span>Price</span><span>~$30–49/mo + a cut</span><span class="ours">$0 self-hosted — you pay only your model subscription</span></div>
         </div>
-        <p class="vs-note">Honest caveat: the hosted products ship sandboxing, SOC 2, and support.
+        <p class="vs-note">The open-source agent runtimes these are built on — OpenClaw, Hermes — run
+        unattended by default: one shipped a one-click remote-code-execution bug, the other's
+        approval mode silently switches off inside containers. autocomp's whole point is that the
+        gate actually fires. The trade: the hosted products ship sandboxing, SOC 2, and support;
         autocomp ships a constitution file and trusts you with root. Different buyers.</p>
       </div>
     </section>
@@ -94,10 +98,11 @@
               <li>Every role prompt and playbook is markdown — fork the constitution</li>
               <li>Approval gates ping your own phone</li>
             </ul>
+            <a class="btn btn-ghost get-repo" href="https://github.com/Eastkap/autocomp" rel="noopener">Clone it on GitHub</a>
             <form class="capture" data-kind="selfhosted-updates" method="post">
               <label class="visually-hidden" for="email-sh">Email address</label>
               <input id="email-sh" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
-              <button class="btn btn-ghost" type="submit">Tell me when the source drops</button>
+              <button class="btn btn-ghost" type="submit">Get release updates</button>
             </form>
           </article>
           <article class="get-card get-managed">

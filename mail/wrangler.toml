@@ -1,0 +1,11 @@
+# autocomp-mail — Email Worker for hello@limed.tech. Deploy from this dir:
+#   cd mail && npm install && npx wrangler deploy
+# then set the secret (service key) and bind the address in Email Routing:
+#   echo "$SUPABASE_SERVICE_KEY" | npx wrangler secret put SUPABASE_SERVICE_KEY
+# SUPABASE_URL is a plain var (public); the service key is a secret.
+name = "autocomp-mail"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+[vars]
+SUPABASE_URL = "https://nifxwfviobjrcztqcovp.supabase.co"

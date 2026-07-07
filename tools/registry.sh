@@ -36,9 +36,16 @@ case "${1:-list}" in
     curl -fsS "${hdr[@]}" -X PATCH "$URL/rest/v1/companies?slug=eq.$slug" -H "Prefer: return=minimal" \
       -d "$(jq -n --arg t "$task" '{last_tick_at:(now|todate),last_task:$t}')"
     echo "logged: [$slug] $task" ;;
+  logcost)
+    # harness-only: attach a measured token/cost row to a company WITHOUT touching last_task.
+    slug="${2:?slug required}"; tokens="${3:?tokens required}"; cost="${4:?cost_usd required}"
+    curl -fsS "${hdr[@]}" -X POST "$URL/rest/v1/activity" -H "Prefer: return=minimal" \
+      -d "$(jq -n --arg s "$slug" --arg t "$tokens" --arg c "$cost" \
+            '{slug:$s,task:"tick cost (headless)",detail:("tokens="+$t+" cost_usd="+$c),actor:"harness",tokens:($t|tonumber),cost_usd:($c|tonumber)}')"
+    echo "logged cost: [$slug] tokens=$tokens cost_usd=$cost" ;;
   history)
     slug="${2:?slug required}"; n="${3:-10}"
     curl -fsS "${hdr[@]}" "$URL/rest/v1/activity?slug=eq.$slug&order=at.desc&limit=$n&select=at,task,detail,actor"
     echo ;;
-  *) echo "usage: registry.sh {next|list|log <slug> <task> [detail] [actor]|history <slug> [n]}" >&2; exit 1;;
+  *) echo "usage: registry.sh {next|list|log <slug> <task> [detail] [actor]|logcost <slug> <tokens> <cost_usd>|history <slug> [n]}" >&2; exit 1;;
 esac

@@ -35,3 +35,11 @@ kanban/config.js
 
 # watchdog alert stamp (runtime)
 private/state/.watchdog-last-alert
+.secrets/
+mail/node_modules/
+mail/.wrangler/
+browser/node_modules/
+browser/profile/
+browser/*profile*/
+browser/storageState*.json
+browser/.auth/

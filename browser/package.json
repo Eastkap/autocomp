@@ -1,0 +1,1 @@
+{"name":"autocomp-browser","private":true,"type":"module","dependencies":{"camoufox-js":"^0.11.1","marked":"^18.0.5","playwright":"^1.48.0"}}

@@ -1,0 +1,27 @@
+# agent-worker — run on a RESIDENTIAL-IP homelab box (worker 2: agentic browser).
+# Drives a real logged-in browser profile to complete interactive web tasks it
+# claims from Supabase `agent_jobs`. Outbound-only; no ports exposed.
+#
+#   cp .env.example .env      # fill Supabase + Anthropic + which identities
+#   # one-time: log the boseclaw (and/or personal) profile in — see README bootstrap
+#   docker compose up -d
+#   docker compose logs -f agent
+services:
+  agent:
+    build: ./worker
+    restart: unless-stopped
+    shm_size: 1gb                      # Chromium needs shared memory
+    environment:
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_SECRET_KEY: ${SUPABASE_SECRET_KEY}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      IDENTITIES: ${IDENTITIES:-boseclaw}     # comma list; add 'personal' ONLY on a box you trust for it
+      AGENT_MODEL: ${AGENT_MODEL:-claude-sonnet-5}
+      WORKER_ID: ${WORKER_ID:-homelab-agent}
+      POLL_INTERVAL: ${POLL_INTERVAL:-8}
+      PROFILE_DIR_BOSECLAW: /profiles/boseclaw
+      PROFILE_DIR_PERSONAL: /profiles/personal
+    volumes:
+      # pre-logged-in Chrome profiles live on the host, mounted read-write so
+      # sessions persist. See README for the one-time login bootstrap.
+      - ${PROFILES_DIR:-./profiles}:/profiles

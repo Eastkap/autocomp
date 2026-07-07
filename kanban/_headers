@@ -1,0 +1,13 @@
+# CF Pages headers. App code must revalidate every load so a redeploy reaches
+# phones immediately (ETag keeps it a cheap 304). Only the versioned vendor lib
+# is safe to cache hard.
+/app.js
+  Cache-Control: no-cache
+/config.js
+  Cache-Control: no-cache
+/style.css
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+/vendor/*
+  Cache-Control: public, max-age=31536000, immutable

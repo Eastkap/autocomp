@@ -39,6 +39,12 @@ cp config.example.js config.js
 3. Paste the Google **client ID + secret** back into Supabase's Google provider → save.
 4. Supabase → Authentication → URL Configuration → set **Site URL** to
    `https://auto.limed.tech`.
+5. (Optional, recommended) Longer sessions: the access-token lifetime defaults to 1h, which
+   feels like being logged out "every few hours" if a refresh hiccups. Raise it to the max —
+   Supabase → Authentication → Sessions → JWT expiry = `604800` (7 days), or via the
+   Management API: `PATCH /v1/projects/<ref>/config/auth {"jwt_exp":604800}`. Leave
+   time-box / inactivity-timeout at 0 (never) so the refresh token keeps sessions alive
+   indefinitely.
 
 ## 3. Cloudflare DNS  → makes the name resolve (+ HTTPS)
 1. Cloudflare → limed.tech → DNS → Add record: **A**, name `auto`, IPv4
@@ -70,3 +76,11 @@ prep a one-line deploy).
 ### What stays gated even with the board live
 The board is a convenience channel, not the approval gate. Money / outbound sends /
 destructive actions STILL go through `state/approvals.md` + a phone push (CLAUDE.md hard rule).
+
+## End-to-end auth testing (no owner needed)
+A dedicated Supabase auth user (`LOOP_TEST_EMAIL`/`LOOP_TEST_PASSWORD` in `.env`) carries
+SELECT-only RLS policies mirroring the owner's read paths (tasks, autocomp.activity,
+autocomp.companies). `tools/authtest.sh get <rest-path> [profile]` mints its JWT and replays
+any browser fetch; for full-UI tests, inject the password-grant session JSON into
+`localStorage["sb-<ref>-auth-token"]` and reload — supabase-js boots it like a real sign-in.
+Writes must stay owner-only: a PATCH with the test JWT has to return `[]` (0 rows).

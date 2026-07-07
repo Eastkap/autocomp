@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Read",
+      "Glob",
+      "Grep",
+      "Edit",
+      "Write",
+      "WebFetch",
+      "WebSearch",
+      "Task",
+      "Agent",
+      "Skill",
+      "TodoWrite"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(./.env)",
+      "Bash(sudo *)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(crontab -r*)"
+    ]
+  }
+}

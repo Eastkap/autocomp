@@ -39,10 +39,12 @@ The framework (everything but `private/`) is the open-source part and is committ
 `private/` is your specific company's data and stays local.
 
 ## Quick start
-1. `cp -r private.example private`, then edit `private/charter.md` to your venture.
-2. (Optional) `cp .env.example .env` and fill any keys you have. Missing keys just turn the
-   dependent step into a gated/manual action — nothing breaks.
-3. Run the loop:
+Run **`tools/init.sh`** — it scaffolds `private/` from `private.example` and `.env` from
+`.env.example` (idempotent; never clobbers an existing clone), checks prereqs, and prints the next
+steps. Then:
+1. Edit `private/charter.md` to your venture, and fill any keys you have in `.env`. Missing keys
+   just turn the dependent step into a gated/manual action — nothing breaks.
+2. Run the loop:
    - `/autocomp start` — run tick 1 and schedule the heartbeat.
    - `/autocomp goal` — run until the charter's "Definition of success" holds (`/goal`).
    - `/autocomp resume` / `/autocomp stop`.

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://autocomp.limed.tech/sitemap.xml

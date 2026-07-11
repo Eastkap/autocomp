@@ -5,7 +5,9 @@
 #                httpRequestsAdaptiveGroups; free plan can't filter to HTML-only, so this is
 #                the closest measurable proxy for page views — documented in tools/metrics.md)
 #   cf_visits  — Cloudflare `sum(visits)` for the same slice
-#   signups    — count(*) of the venture's signup table (Supabase)
+#   signups    — signup rows CREATED that UTC day (Supabase). Daily, not cumulative:
+#                scoreboard.sh sums this column across days, so writing a running total
+#                here double-counts (bug found Tick 44: 1 real signup showed as 3).
 #   revenue_usd— gross Stripe charges (paid, minus refunds) for the day, ventures with billing only
 #   human_visits — rows in the venture's page-load beacon table (e.g. weeklybrief.visits) for
 #                the day, EXCLUDING user agents that declare themselves as automation
@@ -69,9 +71,10 @@ cf_metrics() {
     | if length == 0 then "0 0" else "\(.[0].count) \(.[0].sum.visits)" end'
 }
 
-# signup_count <schema.table> → integer count via db-side count(*)
+# signup_count <schema.table> → rows created on $DAY (UTC); daily so the cross-day sum is honest
 signup_count() {
-  tools/db.sh query "select count(*) as c from $1" | jq -r '.[0].c'
+  tools/db.sh query "select count(*) as c from $1
+    where (created_at at time zone 'UTC')::date = '$DAY'" | jq -r '.[0].c'
 }
 
 # human_visit_count <schema.table> → beacon rows for $DAY (UTC) whose UA does NOT declare

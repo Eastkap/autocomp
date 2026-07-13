@@ -10,6 +10,7 @@
 #                                               # assignee=agent = a self-reminder the next ticks pick up via list
 #   tools/tasks.sh update <id> <status> [notes] # set status (todo|doing|done|blocked) + optional notes
 #   tools/tasks.sh get <id>                     # full card incl. notes — read "- [y]/[n]" approval verdicts
+#   <id> for get/update may be a unique prefix (e.g. first 8 chars); ambiguity fails loudly
 #
 # Honest-reporting: if keys are unset it prints a clear notice and exits non-zero —
 # never fakes a sync (CLAUDE.md).
@@ -26,6 +27,20 @@ if [ -z "$URL" ] || [ -z "$KEY" ]; then
 fi
 API="$URL/rest/v1/tasks"
 hdr=(-H "apikey: $KEY" -H "Authorization: Bearer $KEY" -H "Content-Type: application/json")
+
+# resolve_id <id-or-prefix> — uuid columns reject `like`, so a short prefix is resolved
+# client-side against all card ids. Prints the full uuid or fails loudly.
+resolve_id() {
+  local id="$1" matches n
+  if [ "${#id}" -eq 36 ]; then echo "$id"; return 0; fi
+  matches=$(curl -fsS "${hdr[@]}" "$API?select=id" | jq -r --arg p "$id" '.[].id | select(startswith($p))')
+  n=$(printf '%s' "$matches" | grep -c . || true)
+  case "$n" in
+    1) echo "$matches" ;;
+    0) echo "tasks.sh: no card id starts with '$id' — pass the full uuid or a longer prefix." >&2; return 1 ;;
+    *) echo "tasks.sh: ambiguous prefix '$id' matches $n cards:" >&2; echo "$matches" >&2; return 1 ;;
+  esac
+}
 
 case "${1:-list}" in
   list)
@@ -47,12 +62,12 @@ case "${1:-list}" in
     echo
     ;;
   get)
-    id="${2:?id required}"
+    id=$(resolve_id "${2:?id required}")
     curl -fsS "${hdr[@]}" "$API?id=eq.$id&select=*"
     echo
     ;;
   update)
-    id="${2:?id required}"; status="${3:?status required}"; notes="${4:-}"
+    id=$(resolve_id "${2:?id required}"); status="${3:?status required}"; notes="${4:-}"
     body=$(printf '{"status":%s' "$(jq -Rn --arg v "$status" '$v')")
     [ -n "$notes" ] && body="$body$(printf ',"notes":%s' "$(jq -Rn --arg v "$notes" '$v')")"
     body="$body}"

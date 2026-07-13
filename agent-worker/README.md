@@ -1,9 +1,21 @@
-# agent-worker — homelab agentic-browser worker (worker 2)
+# agent-worker — always-on browser-use daemon (worker 2, OPTIONAL fallback)
 
-The **second** homelab worker. Where `trawl-worker/` is a fetch/solve tier
-(GET/POST-and-return, beats bot walls), this one **drives a real logged-in browser**
-to complete interactive, multi-step tasks: sign-ups, form fills, "log in and do X",
-check a dashboard — the "act for me on the web" work the fetch tier can't do.
+> **Default first.** Worker 2's job — drive a real logged-in browser to do interactive tasks
+> (sign-ups, form fills, "log in and do X") — is done **by default without this daemon**: the
+> loop (Claude Code) drives the captured Camoufox **boseclaw** session directly via
+> `browser/camoufox.mjs act --state .secrets/boseclaw-state.json`. That path needs **no
+> `ANTHROPIC_API_KEY` and no separate Chrome profile** — the loop is already an agent, it just
+> needs hands in a logged-in browser. See the `/homelab` skill, "Worker 2 → Default path."
+>
+> **Use this daemon only for unattended, always-on pickup** that must run with no Claude
+> session open — a true 24/7 headless drainer. It's a separate Python process that calls the
+> Anthropic API itself (costs an API key = your spend) and wants its own pre-logged-in **Chrome**
+> `user_data_dir` (a different engine from the Camoufox storage-state above, so its own one-time
+> login). Everything below sets *that* up.
+
+Where `trawl-worker/` is a fetch/solve tier (GET/POST-and-return, beats bot walls), this one
+**drives a real logged-in browser** to complete interactive, multi-step tasks: sign-ups, form
+fills, "log in and do X", check a dashboard — the "act for me on the web" work the fetch tier can't do.
 
 ```
   VPS loop                 Supabase                Homelab (this)

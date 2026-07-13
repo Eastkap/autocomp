@@ -1,0 +1,171 @@
+[
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "directory": "pitchwall",
+    "status": "already-live",
+    "listingUrl": "https://pitchwall.co/product/weekly-brief",
+    "finalUrl": "https://pitchwall.co/product/weekly-brief",
+    "proof": "/Users/jacobo/dev/autocomp-live/directories/proof/weekly-brief-pitchwall.png",
+    "notes": "listing already live \u2014 verified, not duplicated",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-07T05:55:42.250Z",
+    "audit": {
+      "status": "live",
+      "at": "2026-07-07T07:40:03.968Z",
+      "shot": "/Users/jacobo/dev/autocomp-live/directories/proof/audit-weekly-brief-pitchwall.png"
+    }
+  },
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-07T05:57:08.563336Z",
+    "directory": "awesomeindie",
+    "status": "submitted",
+    "listingUrl": "https://awesomeindie.com",
+    "finalUrl": "https://awesomeindie.com/submit?isCompleted=true",
+    "proof": "proof/weekly-brief-awesomeindie.png",
+    "notes": "Product created successfully \u2014 pending moderation queue",
+    "audit": {
+      "status": "missing",
+      "at": "2026-07-07T07:40:03.968Z",
+      "shot": "/Users/jacobo/dev/autocomp-live/directories/proof/audit-weekly-brief-awesomeindie.png"
+    }
+  },
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-07T05:57:08.563336Z",
+    "directory": "hot100",
+    "status": "already-live",
+    "listingUrl": "https://www.hot100.ai",
+    "finalUrl": "https://www.hot100.ai/",
+    "proof": "proof/weekly-brief-hot100.png",
+    "notes": "verified in Launchpad feed 2026-07-07 w/ correct copy+logo; flow homepage-text dedup is flaky, needs a submitted-products page check",
+    "audit": {
+      "status": "missing",
+      "at": "2026-07-07T07:40:03.968Z",
+      "shot": "/Users/jacobo/dev/autocomp-live/directories/proof/audit-weekly-brief-hot100.png"
+    }
+  },
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-07T05:57:08.563336Z",
+    "directory": "peerpush",
+    "status": "queued",
+    "listingUrl": "https://peerpush.com/p/weekly-brief",
+    "finalUrl": "https://peerpush.com/p/weekly-brief?queue_notification=true",
+    "proof": "proof/weekly-brief-peerpush.png",
+    "notes": "free launch queue #1603 (~23d), paid upsells declined, logo uploaded",
+    "audit": {
+      "status": "pending",
+      "at": "2026-07-07T07:40:03.968Z",
+      "shot": "/Users/jacobo/dev/autocomp-live/directories/proof/audit-weekly-brief-peerpush.png"
+    }
+  },
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "directory": "alternativeto",
+    "status": "blocked",
+    "listingUrl": null,
+    "finalUrl": "https://alternativeto.net/manage-item/",
+    "proof": "/Users/jacobo/dev/autocomp-live/directories/proof/weekly-brief-alternativeto.png",
+    "notes": "account too new \u2014 7-day age gate; submit unlocks after July 14, 2026 at 9:07 AM (Stockholm time). Re-run then.",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-07T07:12:04.823Z",
+    "audit": {
+      "status": "no-url",
+      "at": "2026-07-07T07:40:03.968Z"
+    }
+  },
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "directory": "auraplusplus",
+    "status": "submitted",
+    "listingUrl": "https://auraplusplus.com/projects/weekly-brief",
+    "finalUrl": "https://auraplusplus.com/projects/submit",
+    "proof": "/Users/jacobo/dev/autocomp-live/directories/proof/weekly-brief-auraplusplus.png",
+    "notes": "Submitted to Aura++ (Free Launch, random 200+ day slot; declined $17 upsell). In boseclaw dashboard as Pending. Goes live only after a backlink to auraplusplus.com is added on brief.limed.tech and 'Verify Backlink' is clicked \u2014 out of scope for this flow.",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-07T06:37:30.283Z",
+    "audit": {
+      "status": "missing",
+      "at": "2026-07-07T07:40:03.968Z",
+      "shot": "/Users/jacobo/dev/autocomp-live/directories/proof/audit-weekly-brief-auraplusplus.png"
+    }
+  },
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "directory": "betalist",
+    "status": "blocked",
+    "listingUrl": "https://betalist.com/submissions/175110",
+    "finalUrl": "https://betalist.com/submissions/175110/wizard/submit",
+    "proof": "/Users/jacobo/dev/autocomp-live/directories/proof/weekly-brief-betalist.png",
+    "notes": "paid-only now (no free queue); Lite $39/Standard $99/Premium $299 per-startup one-time. Draft #175110 ready (all wizard steps done, captcha solved, account created). Owner decision: keep FREE-only \u2192 not published. 2captcha unblocked signup but publish is spend-gated.",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-07T06:53:21.876Z",
+    "audit": {
+      "status": "missing",
+      "at": "2026-07-07T07:40:03.968Z",
+      "shot": "/Users/jacobo/dev/autocomp-live/directories/proof/audit-weekly-brief-betalist.png"
+    }
+  },
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "directory": "openhunts",
+    "status": "already-live",
+    "listingUrl": "https://openhunts.com/projects/weekly-brief",
+    "finalUrl": "https://openhunts.com/dashboard",
+    "proof": "/Users/jacobo/dev/autocomp-live/directories/proof/weekly-brief-openhunts.png",
+    "notes": "listing already exists on dashboard \u2014 not duplicated",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-07T07:37:30.435Z",
+    "audit": {
+      "status": "live",
+      "at": "2026-07-07T07:40:03.968Z",
+      "shot": "/Users/jacobo/dev/autocomp-live/directories/proof/audit-weekly-brief-openhunts.png"
+    }
+  },
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "directory": "saashub",
+    "status": "submitted",
+    "listingUrl": "https://www.saashub.com/weekly-brief",
+    "finalUrl": "https://www.saashub.com/related-alternatives/weekly-brief?flow=submit",
+    "proof": "/Users/jacobo/dev/autocomp-live/directories/proof/weekly-brief-saashub.png",
+    "notes": "submitted on the FREE plan (paid $75 priority declined) \u2014 pending SaaSHub approval; verify on audit.",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-07T06:42:46.868Z",
+    "audit": {
+      "status": "missing",
+      "at": "2026-07-07T07:40:03.968Z",
+      "shot": "/Users/jacobo/dev/autocomp-live/directories/proof/audit-weekly-brief-saashub.png"
+    }
+  },
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "directory": "startupranking",
+    "status": "already-live",
+    "listingUrl": "https://www.startupranking.com/startup/weekly-brief",
+    "finalUrl": "https://www.startupranking.com/startup/weekly-brief?__cf_chl_f_tk=c3tzU3uis_Wir5uDd7cHhmPWW9cj_009NvoMPuRx4ww-1783405957-1.0.1.1-OStIcTce17GfbXim14MNPKJdnMVD6AzhLdqa42c9Qwg",
+    "proof": "/Users/jacobo/dev/autocomp-live/directories/proof/weekly-brief-startupranking.png",
+    "notes": "listing already live on StartupRanking \u2014 verified, not duplicated",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-07T06:32:49.617Z",
+    "audit": {
+      "status": "missing",
+      "at": "2026-07-07T07:40:03.968Z",
+      "shot": "/Users/jacobo/dev/autocomp-live/directories/proof/audit-weekly-brief-startupranking.png"
+    }
+  }
+]

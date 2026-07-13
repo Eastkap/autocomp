@@ -43,3 +43,9 @@ browser/profile/
 browser/*profile*/
 browser/storageState*.json
 browser/.auth/
+
+# directory-launch framework: keep the ledger, ignore heavy/derived artifacts
+directories/node_modules
+directories/proof/*.png
+directories/proof/row-*.json
+directories/proof/*-logo.*

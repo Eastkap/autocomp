@@ -1,0 +1,17 @@
+{
+  "slug": "weekly-brief",
+  "name": "Weekly Brief",
+  "url": "https://brief.limed.tech",
+  "tagline": "Your newsletters, ranked into one weekly brief.",
+  "summary": "Weekly Brief reads your newsletters and delivers one AI-ranked digest to Readwise Reader, Matter, or Kindle. Read the 3 that matter, skip the rest.",
+  "description": "Newsletter subscriptions fail the same way: 30 arrive, 3 deserve your time, and the good ones drown. Weekly Brief connects to your newsletter firehose and, once a week, ranks everything against what you actually care about. You get one brief with the must-reads on top and the rest triaged below, delivered to Readwise Reader, Matter, or Kindle instead of your inbox. It ranks, it does not summarize: you still read the originals, just only the ones worth it. Free for up to 10 newsletters.",
+  "categories": ["Productivity", "Artificial Intelligence", "Email"],
+  "tags": ["productivity", "newsletters", "AI", "read-later", "email", "reading", "curation"],
+  "pricing": "Freemium",
+  "maker": "Jacobo",
+  "makerHandle": "@Eastkap",
+  "logo": "https://brief.limed.tech/assets/logo-512.png",
+  "screenshot": "https://brief.limed.tech/assets/screenshot-1280x800.png",
+  "twitter": "",
+  "positioningRule": "It RANKS newsletters, it does not summarize them — never write 'summarizes'. Free tier only; never enter payment, always decline paid/featured upsells."
+}

@@ -5,9 +5,12 @@ referral trickle, and indexing signals. This is a **standing playbook** — run 
 venture (and re-run for major relaunches).
 
 ## Source lists (curated by the owner)
+- **`tools/launchdirectories-list.md`** — MASTER WORKLIST: full scrape of launchdirectories.com
+  (123 dirs, 100 free/freemium ranked by domain authority + dofollow, with per-dir Weekly Brief
+  status). Start here; it carries a one-command re-scrape recipe at the bottom.
 - https://startupsubmit.app/best-startup-directories — meta-list of directories
 - https://ideaproof.io/tools/category/launch-directories — meta-list, launch-focused
-- https://launchdirectories.com — directory-of-directories (e.g. /directory/trustmrr)
+- https://launchdirectories.com — source of the master list above (re-scrape when refreshing)
 - https://indiepa.ge — maker profile page linking all ventures (one per owner, not per venture)
 
 ## How the loop runs it

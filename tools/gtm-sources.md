@@ -14,6 +14,10 @@ from in the plan.
 - https://ideaproof.io/tools/category/launch-directories
 - https://launchdirectories.com
 
+## Content channels
+- **dev.to** publishing via `tools/devto.sh` (see `tools/devto.md`) — drafts by default,
+  publishes under the owner's personal @eastkap byline, use `canonical_url` for cross-posts.
+
 ## How roles use this
 1. When a GTM plan is needed, the marketer skims the relevant source(s) via `tools/web.md`
    (fetch → extract tactics that fit the charter's allowed channels + budget).

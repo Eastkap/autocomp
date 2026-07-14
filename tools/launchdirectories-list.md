@@ -117,7 +117,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | Directory | URL | DR | Follow | Pricing | Status (WeeklyBrief) |
 |---|---|--:|:--:|---|---|
 | TechCrunch | https://techcrunch.com | 92 | no | Paid | paid editorial |
-| StartupFA.me | https://startupfa.me | 83 | yes | Paid | free lane found — Verified badge passed, manual review ~Jul 15 (/s/weekly-brief) |
+| StartupFA.me | https://startupfa.me | 83 | yes | Paid | LIVE Jul 14 — /s/weekly-brief public logged-out, 3 brief.limed.tech anchors NO rel (followed); verifier PASS |
 | Turbo0 | https://turbo0.com/?via=launchdirectories | 80 | yes | Paid | LIVE via free lane (/item/weekly-brief) |
 | Toolpilot | https://www.toolpilot.ai | 78 | yes | Paid |  |
 | There's An AI For That | https://theresanaiforthat.com/?via=krzysztof | 77 | yes | Paid |  |

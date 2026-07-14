@@ -23,7 +23,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | Twelve Tools | https://twelve.tools | 81 | yes | Free + Paid | SUBMITTED (awaits their badge crawler) |
 | Indie Hackers | https://indiehackers.com | 81 | yes | Free | human account |
 | findly.tools | https://findly.tools | 80 | yes | Free + Paid | KILLED Jul 14 (batch B): captcha on submit form — solvable via 2captcha (SaaSHub recipe) but low value, solver spend not warranted |
-| AlternativeTo | https://alternativeto.net | 79 | no | Free | account ready; 7d age-gate unlocks Jul 14 (card 168b161a) |
+| AlternativeTo | https://alternativeto.net | 79 | no | Free | LIVE Jul 14 (submitted 07:10Z, moderation cleared <24h): alternativeto.net/software/weekly-brief/ public logged-out, 5 alternatives attached |
 | SaaSHub | https://www.saashub.com | 79 | yes | Free | SUBMITTED (pending ~Aug 8) |
 | Peerlist | https://peerlist.io | 77 | no | Free | KILLED Jul 14 (batch B): login + LinkedIn/profile verification gate |
 | BetaList | https://betalist.com | 76 | yes | Free | killed (publish is $39 paid-only) |

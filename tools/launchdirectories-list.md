@@ -35,28 +35,28 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | FoundrList | https://foundrlist.com | 72 | yes | Free | KILLED Jul 14 (batch B): paid-only, no free tier |
 | Aura++ | https://auraplusplus.com | 71 | yes | Free + Paid | LIVE (/projects/weekly-brief) |
 | Open Launch | https://open-launch.com | 71 | yes | Free | SUBMITTED (launch Jul 17; badge live in footer) |
-| startupfa.st | https://www.startupfa.st | 71 | no | Free + Paid | badge-gated (batch B); capture job 382252d3 queued Jul 14 for exact badge HTML |
+| startupfa.st | https://www.startupfa.st | 71 | no | Free + Paid | badge captured Jul 14 → badge live on all 12 site pages; free-launch job e51221d5 queued |
 | SideProjectors | https://www.sideprojectors.com | 70 | yes | Free + Paid | parked Jul 14 (batch B): login works (session saved), but multi-step for-sale marketplace — modest value |
 | magicbox.tools | https://magicbox.tools | 70 | yes | Free + Paid | KILLED Jul 14 (batch B): paid-only, no free tier |
 | Future Tools | https://www.futuretools.io | 69 | yes | Free | SUBMITTED (manual review ~Jul 24) |
 | Pitchwall | https://pitchwall.co | 69 | no | Free + Paid | SUBMITTED (under review) |
-| Tiny Startups | https://tinystartups.com | 69 | yes | Free | SUBMITTED Jul 13 (free lane), launch Mon Sep 28 2026; badge live in footer Jul 14, verify job 0096fa4b queued |
+| Tiny Startups | https://tinystartups.com | 69 | yes | Free | APPROVED Jul 14 (badge verified, “cleared to go live”); launches Mon Sep 28 2026 |
 | TrustMRR | https://trustmrr.com | 68 | yes | Free | killed Jul 13 (listing requires Stripe key; acquisition marketplace) |
-| AiTools | https://aitools.inc | 68 | no | Free + Paid | queued batch C (job ad1f4432, Jul 14) |
+| AiTools | https://aitools.inc | 68 | no | Free + Paid | BLOCKED Jul 14 (batch C): no free form surfaced (likely login/paid wizard) |
 | NextGen Tools | https://www.nxgntools.com | 67 | yes | Free + Paid | KILLED Jul 14 (batch B): phone verification required |
-| acidtools.com | https://acidtools.com | 66 | yes | Free | queued batch C (job ad1f4432, Jul 14) |
-| Versily | https://versily.com | 65 | yes | Free | queued batch C (job ad1f4432, Jul 14) |
-| toolsfine | https://toolsfine.com | 65 | yes | Free | queued batch C (job ad1f4432, Jul 14) |
-| Startup Stash | https://startupstash.com | 64 | no | Free | queued batch C (job ad1f4432, Jul 14) |
+| acidtools.com | https://acidtools.com | 66 | yes | Free | KILLED Jul 14 (batch C): paid-only |
+| Versily | https://versily.com | 65 | yes | Free | BLOCKED Jul 14 (batch C): auth-gated before any form |
+| toolsfine | https://toolsfine.com | 65 | yes | Free | KILLED Jul 14 (batch C): paid-only |
+| Startup Stash | https://startupstash.com | 64 | no | Free | SKIPPED Jul 14 (batch C): captcha on submit form |
 | Openhunts | https://openhunts.com | 63 | yes | Free + Paid | queued (~Jun 2028; no free fast-track) |
 | DevHunt | https://devhunt.org | 62 | yes | Free + Paid | killed (every launch week $49, paid-only) |
-| Super Launch | https://www.superlaun.ch | 61 | yes | Free + Paid | queued batch C (job ad1f4432, Jul 14) |
-| Launch Llama Tools | https://tools.launchllama.co | 61 | yes | Free | queued batch C (job ad1f4432, Jul 14) |
+| Super Launch | https://www.superlaun.ch | 61 | yes | Free + Paid | BLOCKED Jul 14 (batch C): no free form (likely login-gated) |
+| Launch Llama Tools | https://tools.launchllama.co | 61 | yes | Free | KILLED Jul 14 (batch C): paid-only |
 | MicroLaunch | https://microlaunch.net | 60 | yes | Free | killed (memory) |
 | Toolfio | https://toolfio.com | 59 | yes | Free + Paid | skip (DR-5 gate) |
-| Indiehunt | https://indiehunt.io | 59 | yes | Free + Paid | queued batch C (job ad1f4432, Jul 14) |
+| Indiehunt | https://indiehunt.io | 59 | yes | Free + Paid | KILLED Jul 14 (batch C): paid-only |
 | StartupBase | https://startupbase.io | 58 | yes | Free + Paid | engagement-gated (5 upvotes + 3 comments unlock submit; seen Jul 13) |
-| Huzzler | https://huzzler.so | 58 | yes | Free + Paid | queued batch C (job ad1f4432, Jul 14) |
+| Huzzler | https://huzzler.so | 58 | yes | Free + Paid | BLOCKED Jul 14 (batch C): no free form (likely login-gated community) |
 | EarlyHunt | https://earlyhunt.com | 57 | yes | Free + Paid | SUBMITTED (scheduled 2027-W11) |
 | FridayHunt | https://fridayhunt.com | 57 | yes | Free + Paid | SUBMITTED (launch Fri Jul 17) |
 | Startups Lab | https://startupslab.site | 55 | yes | Free + Paid |  |

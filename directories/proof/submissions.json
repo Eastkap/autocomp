@@ -156,12 +156,24 @@
     "product": "Weekly Brief",
     "slug": "weekly-brief",
     "directory": "alternativeto",
-    "status": "blocked",
-    "listingUrl": null,
-    "finalUrl": "https://alternativeto.net/manage-item/",
+    "status": "submitted",
+    "listingUrl": "https://alternativeto.net",
+    "finalUrl": "https://alternativeto.net/manage-add-alternatives/?id=f069f821-6ca4-4398-a5db-6cbab4642ca6&mode=afterAdd",
     "proof": "/home/j/autocomp/directories/proof/weekly-brief-alternativeto.png",
-    "notes": "account too new — 7-day age gate; submit unlocks after July 14, 2026 at 9:07 AM (Stockholm time). Re-run then.",
+    "notes": "clicked submit — verify on next audit. url=https://alternativeto.net/manage-add-alternatives/?id=f069f821-6ca4-4398-a5db-6cbab4642ca6&mode=afterAdd",
     "via": "claude-native-camoufox",
-    "at": "2026-07-14T01:12:41.945Z"
+    "at": "2026-07-14T07:12:27.316Z"
+  },
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "directory": "alternativeto-suggest",
+    "status": "submitted",
+    "listingUrl": "https://alternativeto.net/software/weekly-brief/",
+    "finalUrl": "https://alternativeto.net/software/weekly-brief/",
+    "proof": "/home/j/autocomp/directories/proof/weekly-brief-alternativeto-suggest.png",
+    "notes": "Mailbrew: also ticked Mailbrew | Mailbrew: finalized; page now: NEW APP RELEASES | BROWSE ALL APPS | TECH NEWS | LISTS Proton VPN High speed private VPN protected by strong Swiss privacy laws OFFICIAL PARTNER Visit site Home | Meco: also ticked Meco | Meco: also ticked Readless | Meco: also ticked Letterboxx | Meco: also ticked Bilig | Meco: finalized; page now: NEW APP RELEASES | BROWSE ALL APPS | TECH NEWS | LISTS Proton VPN High speed private VPN protected by strong Swiss privacy laws OFFICIAL PARTNER Visit site Home",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-14T11:27:53.680Z"
   }
 ]

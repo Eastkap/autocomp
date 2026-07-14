@@ -36,3 +36,6 @@ venture (and re-run for major relaunches).
 - Free listings only by default; any paid placement = money gate.
 - Match each directory's rules (some want founders' accounts — those are human cards).
 - Don't fake traction numbers in listings; use measured ones or omit.
+- **APPEND, never overwrite**, when saving credentials/notes to `.secrets/accounts.env` or
+  `.secrets/directory-accounts.md` (`>>`, not `>`) — a Jul-13 overwrite left accounts.env
+  holding only its newest entry.

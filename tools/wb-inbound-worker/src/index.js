@@ -21,7 +21,7 @@ export default {
       raw_size: message.rawSize || null,
     };
     try {
-      await fetch(`${env.SUPABASE_URL}/rest/v1/inbound`, {
+      const res = await fetch(`${env.SUPABASE_URL}/rest/v1/inbound`, {
         method: "POST",
         headers: {
           apikey: env.SUPABASE_SERVICE_KEY,
@@ -32,8 +32,14 @@ export default {
         },
         body: JSON.stringify(row),
       });
+      // fetch() does NOT throw on HTTP 4xx/5xx — check explicitly so a rejected
+      // insert (e.g. a missing grant) shows up in `wrangler tail` instead of vanishing.
+      if (!res.ok) {
+        console.error(`inbound insert failed: HTTP ${res.status} — ${await res.text()}`);
+      }
     } catch (e) {
       // Never bounce the sender on a storage hiccup; log-and-accept.
+      console.error(`inbound insert threw: ${e}`);
     }
   },
 };

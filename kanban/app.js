@@ -2,6 +2,45 @@
 // owner email. The agent (loop) writes the same table with the service-role key.
 (() => {
   const $ = (s) => document.querySelector(s);
+
+  // --- pure helpers (no DOM) — exposed as window.AUTOCOMP_HELPERS for headless tests ---
+  // staleness threshold for the lane strip, in hours. MUST match the U7 watchdog's
+  // WATCHDOG_MAX_HOURS default (8) — UI and watchdog must agree on what "stale" means.
+  const LANE_STALE_HOURS = 8;
+  const helpers = {
+    LANE_STALE_HOURS,
+    // glanceable flag: does the HUMAN need to act, or is the loop handling it?
+    needsYou: (t) => t.assignee === "human" && t.status !== "done",
+    // board filter: needs-you toggle ANDs with the tag chips; tags are OR among themselves.
+    // No tags selected + toggle off = everything passes (legacy cards with tags []/null too).
+    cardMatches(t, f) {
+      if (f.needsYou && !this.needsYou(t)) return false;
+      if (f.tags && f.tags.size && !(t.tags || []).some((x) => f.tags.has(x))) return false;
+      return true;
+    },
+    // short relative time; null/invalid -> "—"
+    relTime(iso, nowMs) {
+      if (!iso) return "—";
+      const ms = nowMs - +new Date(iso);
+      if (isNaN(ms)) return "—";
+      const m = Math.round(ms / 60000);
+      if (m < 1) return "just now";
+      if (m < 60) return m + "m ago";
+      const h = Math.round(m / 60);
+      if (h < 48) return h + "h ago";
+      return Math.round(h / 24) + "d ago";
+    },
+    // lane pill state. paused is deliberate -> never marked stale; a lane that has
+    // never cycled (pre-cutover) is "idle", not dead.
+    laneState(row, nowMs) {
+      if ((row.last_status || "") === "paused") return "paused";
+      if (!row.last_cycle_at) return "idle";
+      const ageH = (nowMs - +new Date(row.last_cycle_at)) / 3600000;
+      return ageH > LANE_STALE_HOURS ? "stale" : "ok";
+    },
+  };
+  if (typeof window !== "undefined") window.AUTOCOMP_HELPERS = helpers;
+
   const board = $("#board"), gate = $("#gate"), who = $("#who"), authBtn = $("#auth-btn");
   const fail = (msg) => { gate.hidden = false; gate.textContent = msg; };
 
@@ -44,16 +83,59 @@
       });
   });
 
+  // --- board filter state (session-only; resets on reload by design) ---
+  const filterBar = $("#filters"), noMatch = $("#no-match");
+  const filter = { tags: new Set(), needsYou: false };
+  const cssSafe = (s) => (s || "").replace(/[^a-z0-9_-]/gi, "");
+
+  function renderFilters(tasks) {
+    if (!filterBar) return;
+    const present = [...new Set(tasks.flatMap((t) => t.tags || []))].sort();
+    [...filter.tags].forEach((x) => { if (!present.includes(x)) filter.tags.delete(x); });
+    filterBar.innerHTML = "";
+    const mk = (label, on, cls, fn) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "fchip " + cls + (on ? " on" : "");
+      b.textContent = label;
+      b.addEventListener("click", fn);
+      filterBar.appendChild(b);
+    };
+    mk("▶ needs you", filter.needsYou, "needs", () => { filter.needsYou = !filter.needsYou; render(); });
+    present.forEach((tag) => mk(tag, filter.tags.has(tag), "role role-" + cssSafe(tag), () => {
+      if (filter.tags.has(tag)) filter.tags.delete(tag); else filter.tags.add(tag);
+      render();
+    }));
+    if (filter.needsYou || filter.tags.size) {
+      mk("clear ✕", false, "clear", () => { filter.needsYou = false; filter.tags.clear(); render(); });
+    }
+    filterBar.hidden = false;
+  }
+
   async function render() {
     const { data, error } = await sb.from("tasks")
       .select("*").order("priority", { ascending: false }).order("updated_at", { ascending: false });
     if (error) { console.error(error); return; }
+    const tasks = data || [];
+    renderFilters(tasks);
     document.querySelectorAll(".drop").forEach((d) => (d.innerHTML = ""));
-    (data || []).forEach((t) => {
+    let shown = 0;
+    tasks.forEach((t) => {
+      if (!helpers.cardMatches(t, filter)) return;
       const col = document.querySelector(`.col[data-status="${t.status}"] .drop`);
-      if (col) col.appendChild(cardEl(t));
+      if (col) { col.appendChild(cardEl(t)); shown++; }
     });
+    if (noMatch) noMatch.hidden = !((filter.needsYou || filter.tags.size) && shown === 0);
+    // Lane heartbeats change hours apart — refresh the strip at most once a minute,
+    // not on every task event (a multi-card lane cycle bursts several events).
+    if (Date.now() - lastLanesFetch > 60000) { lastLanesFetch = Date.now(); renderLanes(); }
   }
+  let lastLanesFetch = 0;
+
+  // A lane cycle PATCHing several cards fires one realtime event per card; coalesce
+  // the burst into a single re-render instead of N full tasks+lanes fetches.
+  let renderTimer = null;
+  function renderSoon() { clearTimeout(renderTimer); renderTimer = setTimeout(render, 300); }
 
   // count unchecked "- [ ] ..." subquests in a note
   const openTodos = (notes) => (notes ? (notes.match(/^\s*[-*]\s+\[ \]/gm) || []).length : 0);
@@ -67,8 +149,7 @@
     el.dataset.id = t.id;
     const pTag = t.priority >= 2 ? '<span class="tag p2">urgent</span>'
               : t.priority === 1 ? '<span class="tag p1">high</span>' : "";
-    // glanceable flag: does the HUMAN need to act, or is the loop handling it?
-    const needsYou = t.assignee === "human" && t.status !== "done";
+    const needsYou = helpers.needsYou(t);
     const todos = openTodos(t.notes), decs = openDecisions(t.notes);
     let flag = "";
     if (t.status === "done") {
@@ -83,11 +164,16 @@
       el.classList.add("loop-on");
       flag = '<span class="flag loop">loop’s on it · nothing for you</span>';
     }
+    // role-lane chips (tags text[]); legacy cards with []/null render exactly as before
+    const roleChips = (t.tags || []).map((x) => `<span class="tag role role-${cssSafe(x)}">${esc(x)}</span>`).join("");
+    // review cards show who claimed the check (e.g. "qa ✓ checking")
+    const claimed = t.status === "review" && t.claimed_by
+      ? `<span class="tag claimed">${esc(t.claimed_by)} ✓ checking</span>` : "";
     el.innerHTML = `
       ${flag}
       <div class="t">${esc(t.title)}</div>
       <div class="meta">
-        ${pTag}
+        ${pTag}${roleChips}${claimed}
         <button class="del" title="delete">✕</button>
       </div>
       ${(() => {
@@ -108,7 +194,7 @@
 
   // --- card detail modal (Trello-style: click a card to see full notes + move it) ---
   const modal = $("#modal");
-  const STATUSES = [["todo", "To do"], ["doing", "Doing"], ["blocked", "Blocked"], ["done", "Done"]];
+  const STATUSES = [["todo", "To do"], ["doing", "Doing"], ["review", "Review"], ["blocked", "Blocked"], ["done", "Done"]];
   let dragging = false;
   const closeModal = () => { modal.hidden = true; document.body.classList.remove("modal-open"); };
   function openModal(t) {
@@ -118,7 +204,9 @@
             : '<span class="tag">normal</span>';
     $(".m-badges").innerHTML =
       `<span class="tag ${t.assignee}">${esc(t.assignee)}</span>` +
-      `<span class="tag st-${t.status}">${esc(t.status)}</span>${pr}`;
+      `<span class="tag st-${t.status}">${esc(t.status)}</span>${pr}` +
+      (t.tags || []).map((x) => `<span class="tag role role-${cssSafe(x)}">${esc(x)}</span>`).join("") +
+      (t.status === "review" && t.claimed_by ? `<span class="tag claimed">${esc(t.claimed_by)} ✓ checking</span>` : "");
     // instant "do I need to act?" banner
     const cta = $(".m-cta");
     const todos = openTodos(t.notes), decs = openDecisions(t.notes);
@@ -360,6 +448,42 @@
     if (!work.length) ticksList.innerHTML = '<p class="ticks-intro">No activity logged yet.</p>';
   }
 
+  // --- lane-status strip: liveness of the role lanes (autocomp.lanes, owner-locked RLS).
+  // Raw REST with Accept-Profile, same pattern as the Ticks tab. Empty/unreadable table
+  // (pre-migration, RLS-filtered, signed out) -> strip hidden, never an error.
+  const laneStrip = $("#lane-strip");
+  async function fetchLanes() {
+    const r = await fetch(cfg.SUPABASE_URL +
+      "/rest/v1/lanes?order=lane&select=lane,last_cycle_at,last_status", {
+      headers: {
+        apikey: cfg.SUPABASE_ANON_KEY,
+        Authorization: "Bearer " + currentSession.access_token,
+        "Accept-Profile": "autocomp",
+      },
+    });
+    if (!r.ok) throw new Error("lanes fetch failed: " + r.status);
+    return r.json();
+  }
+
+  async function renderLanes() {
+    if (!laneStrip) return;
+    if (!currentSession) { laneStrip.hidden = true; return; }
+    let rows;
+    try { rows = await fetchLanes(); }
+    catch (_) { laneStrip.hidden = true; return; }
+    if (!Array.isArray(rows) || !rows.length) { laneStrip.hidden = true; return; }
+    const now = Date.now();
+    laneStrip.innerHTML = rows.map((l) => {
+      const st = helpers.laneState(l, now);
+      const label = st === "paused" ? "paused"
+                  : st === "idle" ? "not started"
+                  : st === "stale" ? `stale · last ${helpers.relTime(l.last_cycle_at, now)}`
+                  : `${helpers.relTime(l.last_cycle_at, now)}${l.last_status ? " · " + esc(l.last_status) : ""}`;
+      return `<span class="lane ${st}"><b>${esc(l.lane)}</b><span class="lane-st">${label}</span></span>`;
+    }).join("");
+    laneStrip.hidden = false;
+  }
+
   let rtChannel = null;
   async function boot(session) {
     currentSession = session;
@@ -367,6 +491,8 @@
     if (!session) {
       gate.hidden = false; board.hidden = true;
       ticksMain.hidden = true; tabs.hidden = true;
+      if (laneStrip) laneStrip.hidden = true;
+      if (filterBar) filterBar.hidden = true;
       authBtn.textContent = "Sign in with Google";
       who.textContent = "";
       return;
@@ -380,7 +506,7 @@
     await render();
     if (!rtChannel) {
       rtChannel = sb.channel("tasks-rt")
-        .on("postgres_changes", { event: "*", schema: "public", table: "tasks" }, render)
+        .on("postgres_changes", { event: "*", schema: "public", table: "tasks" }, renderSoon)
         .subscribe();
     }
   }

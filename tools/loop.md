@@ -59,3 +59,17 @@ a guessed budget was noise (it read 800%+ against a placeholder and jammed the g
 permanent SKIP). The gate triggers purely on the **window reset clock** (`endTime` from
 ccusage, which is real). If we ever hit the real rate limit, the tick itself fails and the
 window is retried — there's no fake ceiling.
+
+---
+
+## Role lanes — parallel run (U9 Stage 1, 2026-07-16 →)
+
+The role-agent lanes (docs/plans/2026-07-15-001) run alongside the tick: `tools/role-loop.sh <role>`
+under the `lanes` tmux session (`tools/lanes-tmux.sh`, LANES_ENABLED=1, @reboot cron). GTM is live
+first (LANE_INTERVAL_GTM=6h, ~$2/cycle measured vs $11.24 tick avg); ceo/cto/qa stay behind
+`private/state/.lane-<role>-pause` sentinels until the GTM-solo week proves out. Tick-side rules for
+this window live in tools/tick-prompt.md (skip tagged cards; no repo-writing dispatch while the CTO
+heartbeat is fresh). Watchdog covers both (tick stamp + per-lane heartbeats). Rollback: touch the
+pause sentinels (lanes) / the tick cron line never moved. Stage 2 (tick retirement) = owner-boarded
+decision after ~3 days of parallel evidence: zero double-claims, burn within cap, done/day ≥ the
+1.2/day baseline recorded in the ledger 2026-07-15.

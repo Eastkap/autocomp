@@ -59,8 +59,8 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | Huzzler | https://huzzler.so | 58 | yes | Free + Paid | BLOCKED Jul 14 (batch C): no free form (likely login-gated community) |
 | EarlyHunt | https://earlyhunt.com | 57 | yes | Free + Paid | SUBMITTED (scheduled 2027-W11) |
 | FridayHunt | https://fridayhunt.com | 57 | yes | Free + Paid | SUBMITTED (launch Fri Jul 17) |
-| Startups Lab | https://startupslab.site | 55 | yes | Free + Paid |  |
-| Firsto | https://firsto.co | 55 | no | Free |  |
+| Startups Lab | https://startupslab.site | 55 | yes | Free + Paid | BLOCKED Jul 16: Turnstile at email signup unclickable (closed shadow DOM) on datacenter IP; Google-OAuth alt dead until session re-capture (card 88a4ad07) |
+| Firsto | https://firsto.co | 55 | no | Free | flow PROVEN Jul 16 (GitHub OAuth + 4-step wizard, session saved) but free queue booked 180d — racing the 00:00Z slot release (gtm card 9f52b15f) |
 | Launch | https://trylaunch.ai | 54 | yes | Free + Paid |  |
 | SaasHunt | https://saashunt.best | 53 | yes | Free + Paid |  |
 | hot100 | https://www.hot100.ai | 52 | yes | Free | LIVE (/project/2167) |

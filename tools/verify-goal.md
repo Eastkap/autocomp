@@ -23,6 +23,15 @@ Do NOT hand it the doer's narrative, logs, or conclusion — that just invites i
 must go look. Ask it to return: `PASS` or `FAIL`, the **evidence it actually observed**, and (on
 FAIL) the gap.
 
+## Matched personas (the specialized form of this check)
+This generic check is the **fallback**. When the work has a matching check type,
+dispatch the matched verifier persona instead — same fresh-context rules, but with a
+concrete checklist, a declared cheapest-capable model tier, and a stricter evidence
+contract. The registry is `tools/verifiers.md` (tag→persona table: `copy` → copy-check,
+`feature`/`deploy` → site-qa + monkey-test, `gtm-listing` → link-check); persona files
+live in `roles/verifiers/`. Unmatched work still gets THIS check — nothing skips
+verification either way.
+
 ## Acting on the result
 - **PASS** → mark the criterion met; cite the verifier's evidence in the ledger.
 - **FAIL** → do NOT mark done. Keep the item open/blocked with the verifier's finding, and either

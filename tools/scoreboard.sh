@@ -20,7 +20,7 @@ if [ -z "$URL" ] || [ -z "$KEY" ]; then
 fi
 
 python3 - "$URL" "$KEY" <<'PY'
-import sys, json, urllib.request, collections
+import sys, os, json, urllib.request, collections, datetime
 URL, KEY = sys.argv[1], sys.argv[2]
 def get(path):
     req = urllib.request.Request(URL + "/rest/v1/" + path, headers={
@@ -29,11 +29,19 @@ def get(path):
         return json.load(r)
 
 companies = {c["slug"]: c for c in get("companies?select=slug,name,stage,status")}
-# model burn (tokens + cost) per slug, from the per-tick cost rows
+# model burn (tokens + cost) per slug, from the per-tick/per-cycle cost rows.
+# Rows are per-EVENT (additive), so summing is safe — see private/memory/daily-metrics-are-deltas.md.
+# Also split per actor (harness tick vs ceo/cto/qa/gtm lane cycles) and track today's total.
 burn = collections.defaultdict(lambda: {"tokens": 0, "cost": 0.0, "ticks": 0})
-for r in get("activity?select=slug,tokens,cost_usd&tokens=not.is.null&limit=1000"):
+by_actor = collections.defaultdict(lambda: collections.defaultdict(float))  # slug -> actor -> cost
+today = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+today_cost = 0.0
+for r in get("activity?select=slug,tokens,cost_usd,actor,at&tokens=not.is.null&limit=1000"):
     b = burn[r["slug"]]; b["tokens"] += r.get("tokens") or 0
     b["cost"] += float(r.get("cost_usd") or 0); b["ticks"] += 1
+    by_actor[r["slug"]][r.get("actor") or "?"] += float(r.get("cost_usd") or 0)
+    if (r.get("at") or "").startswith(today):
+        today_cost += float(r.get("cost_usd") or 0)
 # traffic / signups / revenue per company, summed across days
 met = collections.defaultdict(lambda: {"cfv": 0, "hv": 0, "signups": 0, "rev": 0.0, "days": 0})
 for r in get("metrics_daily?select=company_slug,cf_visits,human_visits,signups,revenue_usd&limit=2000"):
@@ -63,10 +71,17 @@ for s in slugs:
         verdict = f"SELL — ${b['cost']:.2f} burned, $0 in, 0 signups: distribution first"
     print(f"  {s:<13} {c.get('stage','-'):<8} {b['tokens']:>12,} {b['cost']:>8.2f} "
           f"{m['rev']:>7.2f} {net:>9.2f} {m['hv']:>7} {m['signups']:>8}  {verdict}")
+    if by_actor[s]:  # lane burn (ceo/cto/qa/gtm) vs harness tick burn, at a glance
+        parts = " · ".join(f"{a} ${v:.2f}" for a, v in
+                           sorted(by_actor[s].items(), key=lambda kv: -kv[1]))
+        print(f"  {'':<13} {'':<8} burn by actor: {parts}")
 print("  " + "-"*(len(hdr)+22))
 print(f"  {'TOTAL':<13} {'':<8} {tt:>12,} {tc:>8.2f} {tr:>7.2f} {tr-tc:>9.2f}")
 print(f"\n  Net position: ${tr-tc:+.2f}  (revenue ${tr:.2f} − model burn ${tc:.2f}; approved cash")
 print(f"  spend/domains not yet wired per-venture — see private/state/pnl.md, $0 to date).")
+cap = os.environ.get("DAILY_BURN_CAP_USD")
+if cap:
+    print(f"  Burn today (UTC {today}): ${today_cost:.2f} of ${float(cap):.0f} cap (DAILY_BURN_CAP_USD).")
 print(f"\n  Rule 17 gate: NO new venture or new feature until every active venture above shows")
 print(f"  live GTM + flowing stats. A 'SELL' verdict means the next move is distribution, not build.\n")
 PY

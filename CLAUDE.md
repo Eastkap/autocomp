@@ -200,3 +200,9 @@ the tick time, and logs the tick's measured token cost to the registry. A cron `
 pushes ntfy if no tick for >8h. Interactive sessions are for co-founder work and never run the
 heartbeat. (Superseded the earlier window-tail gate, which stalled overnight when idle.) See
 `tools/loop.md`.
+
+**Parallel run in progress (since 2026-07-16):** the role-agent lanes (CEO/CTO/QA/GTM — see
+`docs/plans/2026-07-15-001-feat-role-agent-lanes-migration-plan.md`, `tools/role-loop.sh`,
+`tools/herder.md`) run ALONGSIDE the tick; GTM lane live first, others behind pause sentinels.
+The tick skips role-tagged cards (they belong to the lanes). Tick retirement (Stage 2) happens
+only after ~3 days of clean parallel evidence, via a boarded owner decision.

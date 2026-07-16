@@ -18,3 +18,11 @@ from an interactive tick:
   this tick's token cost in the registry.
 - Your final message = the CEO report (§7), plain text — it lands in the run log the owner
   reads.
+- **PARALLEL RUN with role lanes (U9 Stage 1, since 2026-07-16).** The persistent role lanes
+  (`tools/role-loop.sh`, see `docs/plans/2026-07-15-001-feat-role-agent-lanes-migration-plan.md`)
+  run alongside this tick until cutover. Two hard rules for this window:
+  (a) **Skip any card with a non-empty `tags` array** — role-tagged cards belong to the lanes
+  (they claim atomically; you do not). Treat them as WAIT in your board verdicts, never execute.
+  (b) **Dispatch no repo-writing subagents while the CTO lane's heartbeat is fresh** (<8h:
+  `tools/context.sh read` or curl `autocomp.lanes` for lane=cto `last_cycle_at`) — the CTO lane
+  is the single repo writer. Ledger/approvals appends go through `tools/append.sh`.

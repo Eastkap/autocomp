@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex" />
   <title>autocomp sync</title>
-  <link rel="stylesheet" href="style.css?v=10" />
+  <link rel="stylesheet" href="style.css?v=11" />
 </head>
 <body>
   <header class="bar">
@@ -19,6 +19,7 @@
   </header>
 
   <main id="board" class="board" hidden>
+    <div id="lane-strip" class="lane-strip" hidden></div>
     <form id="new-task" class="new-task">
       <input id="nt-title" placeholder="New task for the agent…" required />
       <select id="nt-priority" title="priority">
@@ -28,12 +29,15 @@
       </select>
       <button class="btn primary" type="submit">Add</button>
     </form>
+    <div id="filters" class="filters" hidden></div>
     <div class="cols">
       <section class="col" data-status="todo"><h2>To do</h2><div class="drop"></div></section>
       <section class="col" data-status="doing"><h2>Doing</h2><div class="drop"></div></section>
+      <section class="col" data-status="review"><h2>Review</h2><div class="drop"></div></section>
       <section class="col" data-status="blocked"><h2>Blocked</h2><div class="drop"></div></section>
       <section class="col" data-status="done"><h2>Done</h2><div class="drop"></div></section>
     </div>
+    <p id="no-match" class="no-match" hidden>No cards match the current filter.</p>
   </main>
 
   <main id="ticks" class="ticks" hidden>
@@ -59,7 +63,7 @@
 
   <script src="vendor/supabase.min.js"></script>
   <script>window.supabase || document.write('<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"><\/script>');</script>
-  <script src="config.js?v=10"></script>
-  <script src="app.js?v=10"></script>
+  <script src="config.js?v=11"></script>
+  <script src="app.js?v=12"></script>
 </body>
 </html>

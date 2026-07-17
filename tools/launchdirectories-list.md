@@ -34,7 +34,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | TinyLaunch | https://www.tinylaunch.com | 72 | yes | Free + Paid | SUBMITTED (launch Aug 10) |
 | FoundrList | https://foundrlist.com | 72 | yes | Free | KILLED Jul 14 (batch B): paid-only, no free tier |
 | Aura++ | https://auraplusplus.com | 71 | yes | Free + Paid | LIVE (/projects/weekly-brief) |
-| Open Launch | https://open-launch.com | 71 | yes | Free | LIVE Jul 17 (launch day — /projects/weekly-brief-1062, verified 08:26Z; backlink nofollow unless top-3 today; badge stays in footer) |
+| Open Launch | https://open-launch.com | 71 | yes | Free | LIVE Jul 17 (/projects/weekly-brief-1062; launch day final 20:06Z: 7th of 15 at 82 upvotes, no top-3 → backlink stays nofollow; badge stays in footer) |
 | startupfa.st | https://www.startupfa.st | 71 | no | Free + Paid | badge captured Jul 14 → badge live on all 12 site pages; free-launch job e51221d5 queued |
 | SideProjectors | https://www.sideprojectors.com | 70 | yes | Free + Paid | parked Jul 14 (batch B): login works (session saved), but multi-step for-sale marketplace — modest value |
 | magicbox.tools | https://magicbox.tools | 70 | yes | Free + Paid | KILLED Jul 14 (batch B): paid-only, no free tier |
@@ -58,7 +58,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | StartupBase | https://startupbase.io | 58 | yes | Free + Paid | engagement-gated (5 upvotes + 3 comments unlock submit; seen Jul 13) |
 | Huzzler | https://huzzler.so | 58 | yes | Free + Paid | BLOCKED Jul 14 (batch C): no free form (likely login-gated community) |
 | EarlyHunt | https://earlyhunt.com | 57 | yes | Free + Paid | SUBMITTED (scheduled 2027-W11) |
-| FridayHunt | https://fridayhunt.com | 57 | yes | Free + Paid | SUBMITTED (launch Fri Jul 17) |
+| FridayHunt | https://fridayhunt.com | 57 | yes | Free + Paid | SUBMITTED (launch Fri Jul 17 NOT published — soft-404 all day, no rejection mail; re-poll ~Jul 20) |
 | Startups Lab | https://startupslab.site | 55 | yes | Free + Paid | BLOCKED Jul 16: Turnstile at email signup unclickable (closed shadow DOM) on datacenter IP; Google-OAuth alt dead until session re-capture (card 88a4ad07) |
 | Firsto | https://firsto.co | 55 | no | Free | SUBMITTED Jul 17 (free lane via 'Earliest available' button; launch Jan 13 2027; listing live at firsto.co/projects/weekly-brief) — footer-badge offer moves launch to Aug 16 2026 + DR-55 dofollow, routed to cto (card 01d861e7) |
 | Launch | https://trylaunch.ai | 54 | yes | Free + Paid |  |

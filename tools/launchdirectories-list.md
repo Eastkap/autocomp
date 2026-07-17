@@ -16,11 +16,11 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | Sourceforge | https://sourceforge.net | 92 | yes | Free + Paid | vendor-heavy |
 | Hacker News | https://news.ycombinator.com | 91 | no | Free |  |
 | G2 | https://www.g2.com | 91 | yes | Free + Paid | vendor-heavy |
-| Product Hunt | https://www.producthunt.com | 91 | no | Free | blocked (new-account trust; retry ~Jul 17) |
+| Product Hunt | https://www.producthunt.com | 91 | no | Free | blocked (new-account trust; Jul-17 VPS retry hit CF interstitial — retry job dcffe778 queued for homelab) |
 | Capterra | https://www.capterra.com | 91 | yes | Free + Paid | vendor-heavy |
 | Fazier | https://fazier.com | 82 | yes | Free + Paid | killed (memory) |
 | Dang AI | https://dang.ai | 81 | yes | Free | BLOCKED Jul 14 (batch B): login magic-link never arrived, auth lands on /pricing — likely paid-only; acct exists |
-| Twelve Tools | https://twelve.tools | 81 | yes | Free + Paid | SUBMITTED (awaits their badge crawler) |
+| Twelve Tools | https://twelve.tools | 81 | yes | Free + Paid | LIVE Jul 17 — twelve.tools/brief-limed-tech, 3 followed backlinks (no rel); highest-DR live listing |
 | Indie Hackers | https://indiehackers.com | 81 | yes | Free | human account |
 | findly.tools | https://findly.tools | 80 | yes | Free + Paid | KILLED Jul 14 (batch B): captcha on submit form — solvable via 2captcha (SaaSHub recipe) but low value, solver spend not warranted |
 | AlternativeTo | https://alternativeto.net | 79 | no | Free | LIVE Jul 14 (submitted 07:10Z, moderation cleared <24h): alternativeto.net/software/weekly-brief/ public logged-out, 5 alternatives attached |

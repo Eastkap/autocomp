@@ -28,7 +28,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | Peerlist | https://peerlist.io | 77 | no | Free | KILLED Jul 14 (batch B): login + LinkedIn/profile verification gate |
 | BetaList | https://betalist.com | 76 | yes | Free | killed (publish is $39 paid-only) |
 | Alternative.me | https://alternative.me | 75 | yes | Free | SUBMITTED (pending) |
-| LaunchIgniter | https://launchigniter.com | 75 | no | Free + Paid | SUBMITTED (pending approval; soft-404 as of Jul 13) |
+| LaunchIgniter | https://launchigniter.com | 75 | no | Free + Paid | SUBMITTED (pending approval; still soft-404 Jul 16 — re-poll ~Jul 20) |
 | PeerPush | https://peerpush.net | 74 | yes | Free + Paid | SUBMITTED-VERIFIED (queue #1603, ~Jul 30) |
 | SoftwareWorld | https://www.softwareworld.co | 73 | yes | Free + Paid | KILLED Jul 14 (batch B): CF bot-verification wall on submit page |
 | TinyLaunch | https://www.tinylaunch.com | 72 | yes | Free + Paid | SUBMITTED (launch Aug 10) |
@@ -60,7 +60,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | EarlyHunt | https://earlyhunt.com | 57 | yes | Free + Paid | SUBMITTED (scheduled 2027-W11) |
 | FridayHunt | https://fridayhunt.com | 57 | yes | Free + Paid | SUBMITTED (launch Fri Jul 17) |
 | Startups Lab | https://startupslab.site | 55 | yes | Free + Paid | BLOCKED Jul 16: Turnstile at email signup unclickable (closed shadow DOM) on datacenter IP; Google-OAuth alt dead until session re-capture (card 88a4ad07) |
-| Firsto | https://firsto.co | 55 | no | Free | flow PROVEN Jul 16 (GitHub OAuth + 4-step wizard, session saved) but free queue booked 180d — racing the 00:00Z slot release (gtm card 9f52b15f) |
+| Firsto | https://firsto.co | 55 | no | Free | SUBMITTED Jul 17 (free lane via 'Earliest available' button; launch Jan 13 2027; listing live at firsto.co/projects/weekly-brief) — footer-badge offer moves launch to Aug 16 2026 + DR-55 dofollow, routed to cto (card 01d861e7) |
 | Launch | https://trylaunch.ai | 54 | yes | Free + Paid |  |
 | SaasHunt | https://saashunt.best | 53 | yes | Free + Paid |  |
 | hot100 | https://www.hot100.ai | 52 | yes | Free | LIVE (/project/2167) |
@@ -73,7 +73,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | We Like Tools | https://weliketools.com | 50 | no | Free + Paid |  |
 | StartupTrusted | https://startuptrusted.com | 49 | yes | Free + Paid |  |
 | IdeaKiln | https://ideakiln.com | 48 | yes | Free |  |
-| Promote Project | https://www.promoteproject.com | 48 | yes | Free | SUBMITTED (pending review; poll ~Jul 15-16) |
+| Promote Project | https://www.promoteproject.com | 48 | yes | Free | SUBMITTED (pending review; still 404 + 0 search hits Jul 16 — re-poll ~Jul 20) |
 | Micro SaaS Examples | https://www.microsaasexamples.com | 47 | no | Free + Paid |  |
 | SaaSBison | https://saasbison.com | 45 | yes | Free + Paid |  |
 | Proofstories | https://proofstories.io/directory | 43 | yes | Free + Paid |  |
@@ -123,7 +123,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | There's An AI For That | https://theresanaiforthat.com/?via=krzysztof | 77 | yes | Paid |  |
 | SubmitAiTools | https://submitaitools.org | 75 | no | Paid |  |
 | Uneed | https://www.uneed.best?atp=pBmSdT | 75 | yes | Paid | SUBMITTED-VERIFIED via free waiting line (launch Nov 30) |
-| Indie Deals | https://www.indie.deals | 60 | yes | Paid | SUBMITTED free (pending ~96h; poll ~Jul 15; badge in footer) |
+| Indie Deals | https://www.indie.deals | 60 | yes | Paid | SUBMITTED free (still not public Jul 16, past their ~96h estimate; badge stays in footer — re-poll ~Jul 20) |
 | aiwith.me | https://aiwith.me | 59 | yes | Paid |  |
 | SoloPush | https://solopush.com | 45 | yes | Paid | killed-for-now (backend NXDOMAIN) |
 | AiTools | https://aitools.fyi | 44 | yes | Paid |  |

@@ -34,7 +34,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | TinyLaunch | https://www.tinylaunch.com | 72 | yes | Free + Paid | SUBMITTED (launch Aug 10) |
 | FoundrList | https://foundrlist.com | 72 | yes | Free | KILLED Jul 14 (batch B): paid-only, no free tier |
 | Aura++ | https://auraplusplus.com | 71 | yes | Free + Paid | LIVE (/projects/weekly-brief) |
-| Open Launch | https://open-launch.com | 71 | yes | Free | SUBMITTED (launch Jul 17; badge live in footer) |
+| Open Launch | https://open-launch.com | 71 | yes | Free | LIVE Jul 17 (launch day — /projects/weekly-brief-1062, verified 08:26Z; backlink nofollow unless top-3 today; badge stays in footer) |
 | startupfa.st | https://www.startupfa.st | 71 | no | Free + Paid | badge captured Jul 14 → badge live on all 12 site pages; free-launch job e51221d5 queued |
 | SideProjectors | https://www.sideprojectors.com | 70 | yes | Free + Paid | parked Jul 14 (batch B): login works (session saved), but multi-step for-sale marketplace — modest value |
 | magicbox.tools | https://magicbox.tools | 70 | yes | Free + Paid | KILLED Jul 14 (batch B): paid-only, no free tier |

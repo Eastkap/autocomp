@@ -62,7 +62,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | Startups Lab | https://startupslab.site | 55 | yes | Free + Paid | BLOCKED Jul 16: Turnstile at email signup unclickable (closed shadow DOM) on datacenter IP; Google-OAuth alt dead until session re-capture (card 88a4ad07) |
 | Firsto | https://firsto.co | 55 | no | Free | SUBMITTED Jul 17 (free lane via 'Earliest available' button; launch Jan 13 2027; listing live at firsto.co/projects/weekly-brief) — footer-badge offer moves launch to Aug 16 2026 + DR-55 dofollow, routed to cto (card 01d861e7) |
 | Launch | https://trylaunch.ai | 54 | yes | Free + Paid | LIVE Jul 17 (free lane, GitHub OAuth; trylaunch.ai/launch/weekly-brief — 'Launch complete'; backlink rel unconfirmed, qa card 06db1f31) |
-| SaasHunt | https://saashunt.best | 53 | yes | Free + Paid |  |
+| SaasHunt | https://saashunt.best | 53 | yes | Free + Paid | SUBMITTED Jul 18 (free lane, GitHub OAuth; launch scheduled Fri May 7 2027 08:00 UTC; project page ALREADY PUBLIC at saashunt.best/projects/weekly-brief — 2 anchors to brief.limed.tech rel=noopener nofollow pre-launch; submitted by the 03:27Z gtm cycle that TIMED OUT at 30m — work orphaned, tick 72 consumed it) |
 | hot100 | https://www.hot100.ai | 52 | yes | Free | LIVE (/project/2167) |
 | Launching Next | https://www.launchingnext.com | 52 | yes | Free | SUBMITTED (~4-month queue) |
 | AI Tech Viral | https://aitechviral.com | 52 | no | Free |  |

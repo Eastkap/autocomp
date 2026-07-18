@@ -175,5 +175,29 @@
     "notes": "Mailbrew: also ticked Mailbrew | Mailbrew: finalized; page now: NEW APP RELEASES | BROWSE ALL APPS | TECH NEWS | LISTS Proton VPN High speed private VPN protected by strong Swiss privacy laws OFFICIAL PARTNER Visit site Home | Meco: also ticked Meco | Meco: also ticked Readless | Meco: also ticked Letterboxx | Meco: also ticked Bilig | Meco: finalized; page now: NEW APP RELEASES | BROWSE ALL APPS | TECH NEWS | LISTS Proton VPN High speed private VPN protected by strong Swiss privacy laws OFFICIAL PARTNER Visit site Home",
     "via": "claude-native-camoufox",
     "at": "2026-07-14T11:27:53.680Z"
+  },
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "directory": "saashunt-probe",
+    "status": "failed",
+    "listingUrl": null,
+    "finalUrl": "https://saashunt.best/sign-in?redirect=/projects/submit",
+    "proof": "/home/j/autocomp/directories/proof/weekly-brief-saashunt-probe.png",
+    "notes": "page.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\\'Next\\')')\u001b[22m\n",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-18T03:20:38.659Z"
+  },
+  {
+    "product": "Weekly Brief",
+    "slug": "weekly-brief",
+    "directory": "saashunt",
+    "status": "submitted",
+    "listingUrl": "https://saashunt.best/projects/weekly-brief",
+    "finalUrl": "https://saashunt.best/projects/weekly-brief",
+    "proof": "/home/j/autocomp/directories/proof/weekly-brief-saashunt.png",
+    "notes": "wizard completed; left submit page / confirmation shown",
+    "via": "claude-native-camoufox",
+    "at": "2026-07-18T03:29:54.709Z"
   }
 ]

@@ -61,7 +61,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | FridayHunt | https://fridayhunt.com | 57 | yes | Free + Paid | SUBMITTED (launch Fri Jul 17 NOT published — soft-404 all day, no rejection mail; re-poll ~Jul 20) |
 | Startups Lab | https://startupslab.site | 55 | yes | Free + Paid | BLOCKED Jul 16: Turnstile at email signup unclickable (closed shadow DOM) on datacenter IP; Google-OAuth alt dead until session re-capture (card 88a4ad07) |
 | Firsto | https://firsto.co | 55 | no | Free | SUBMITTED Jul 17 (free lane via 'Earliest available' button; launch Jan 13 2027; listing live at firsto.co/projects/weekly-brief) — footer-badge offer moves launch to Aug 16 2026 + DR-55 dofollow, routed to cto (card 01d861e7) |
-| Launch | https://trylaunch.ai | 54 | yes | Free + Paid |  |
+| Launch | https://trylaunch.ai | 54 | yes | Free + Paid | LIVE Jul 17 (free lane, GitHub OAuth; trylaunch.ai/launch/weekly-brief — 'Launch complete'; backlink rel unconfirmed, qa card 06db1f31) |
 | SaasHunt | https://saashunt.best | 53 | yes | Free + Paid |  |
 | hot100 | https://www.hot100.ai | 52 | yes | Free | LIVE (/project/2167) |
 | Launching Next | https://www.launchingnext.com | 52 | yes | Free | SUBMITTED (~4-month queue) |

@@ -14,7 +14,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 |---|---|--:|:--:|---|---|
 | Reddit | https://www.reddit.com | 95 | no | Free | outreach lane, not a dir |
 | Sourceforge | https://sourceforge.net | 92 | yes | Free + Paid | vendor-heavy |
-| Hacker News | https://news.ycombinator.com | 91 | no | Free |  |
+| Hacker News | https://news.ycombinator.com | 91 | no | Free | GATED — not a bot-identity submit. A Show HN posts under the owner's PERSONAL identity (approval #1 routed HN to the copy-paste lane); a fresh bot account posting a product is flagged/killed by HN. Classified Jul 28 so sweeps stop counting it as unprobed. Free tier is otherwise fully classified. |
 | G2 | https://www.g2.com | 91 | yes | Free + Paid | vendor-heavy |
 | Product Hunt | https://www.producthunt.com | 91 | no | Free | blocked (new-account trust; Jul-17 VPS retry hit CF interstitial — retry job dcffe778 queued for homelab) |
 | Capterra | https://www.capterra.com | 91 | yes | Free + Paid | vendor-heavy |
@@ -65,53 +65,53 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | SaasHunt | https://saashunt.best | 53 | yes | Free + Paid | SUBMITTED Jul 18 (free lane, GitHub OAuth; launch scheduled Fri May 7 2027 08:00 UTC; project page ALREADY PUBLIC at saashunt.best/projects/weekly-brief — 2 anchors to brief.limed.tech rel=noopener nofollow pre-launch; submitted by the 03:27Z gtm cycle that TIMED OUT at 30m — work orphaned, tick 72 consumed it) |
 | hot100 | https://www.hot100.ai | 52 | yes | Free | LIVE (/project/2167) |
 | Launching Next | https://www.launchingnext.com | 52 | yes | Free | SUBMITTED (~4-month queue) |
-| AI Tech Viral | https://aitechviral.com | 52 | no | Free |  |
+| AI Tech Viral | https://aitechviral.com | 52 | no | Free | probed Jul 28: no own submit path (homepage submit links point off-site to justlaunched.fyi) — drainer frontier |
 | Shipybara | https://shipybara.com | 52 | yes | Free + Paid | probed Jul 25: /submit 404 (no plain-HTTP path); revisit via Camoufox drainer |
-| rankinpublic.xyz | https://rankinpublic.xyz | 52 | no | Free + Paid |  |
+| rankinpublic.xyz | https://rankinpublic.xyz | 52 | no | Free + Paid | probed Jul 28: no submit path found on homepage |
 | AppaList | https://appalist.com | 51 | yes | Free + Paid | probed Jul 26: /submit is login-gated (`/api/auth/google?redirect=/submit` + `/login`/`/signup`; no plain-HTTP submit form) — Camoufox drainer frontier (down); dofollow DR-51 worth a launch when drainer wakes |
 | Open Alternative | https://openalternative.co | 51 | yes | Free | probed Jul 25: /submit is login-gated ('Sign In' dominates) + JS-hydrated Next.js; needs Camoufox drainer (down) — no plain-HTTP submit |
-| We Like Tools | https://weliketools.com | 50 | no | Free + Paid |  |
+| We Like Tools | https://weliketools.com | 50 | no | Free + Paid | probed Jul 28: no own submit path (homepage submit links point off-site to justlaunched.fyi) — drainer frontier |
 | StartupTrusted | https://startuptrusted.com | 49 | yes | Free + Paid | probed Jul 25: /submit gated behind 'Sign in with Email' + JS-hydrated Next.js; needs Camoufox drainer (down) |
-| IdeaKiln | https://ideakiln.com | 48 | yes | Free |  |
+| IdeaKiln | https://ideakiln.com | 48 | yes | Free | probed Jul 28: no /submit; only /dashboard/submit-idea (auth-gated dashboard, JS-hydrated, forms=0) — needs Camoufox drainer (down) |
 | Promote Project | https://www.promoteproject.com | 48 | yes | Free | SUBMITTED (pending review; re-poll Jul 26 still 404 at /startup/ + /product/ — 10+d, no listing → treat as silently dropped; stop polling) |
-| Micro SaaS Examples | https://www.microsaasexamples.com | 47 | no | Free + Paid |  |
+| Micro SaaS Examples | https://www.microsaasexamples.com | 47 | no | Free + Paid | SUBMITTED Jul 28 (plain-HTTP multipart POST to /api/submit, no auth/no captcha — Turnstile code present but inactive; free "standard" tier; category Newsletter; HTTP 202 {"ok":true,"message":"Submission accepted for manual review."}). Manual review, NOT yet live — re-poll ~Aug 5. |
 | SaaSBison | https://saasbison.com | 45 | yes | Free + Paid | probed Jul 25: /submit 200 with free tier but JS-hydrated Next.js form (paid expedite $12-21); no plain-HTTP submit — needs Camoufox drainer |
-| Proofstories | https://proofstories.io/directory | 43 | yes | Free + Paid |  |
-| Daily Pings | https://dailypings.com | 43 | yes | Free + Paid |  |
-| TinyLaunchpad | https://tinylaunchpad.com | 43 | yes | Free + Paid |  |
-| Awesome Tools | https://awesome.tools | 42 | no | Free + Paid |  |
-| FindYourSaaS | https://www.findyoursaas.com | 41 | yes | Free + Paid |  |
-| ProductBurst | https://productburst.com | 40 | yes | Free |  |
-| toolfolio | https://toolfolio.io | 39 | no | Free + Paid |  |
-| Web Review | https://web-review.com | 39 | yes | Free + Paid |  |
-| Saaspa.ge | https://www.saaspa.ge | 39 | yes | Free |  |
-| DodoDirectory | https://dododirectory.com | 38 | yes | Free + Paid |  |
-| BuildVoyage | https://buildvoyage.com | 38 | yes | Free + Paid |  |
-| TechTrendin | https://www.techtrendin.com | 37 | yes | Free |  |
-| Sumodir | https://sumodir.com | 36 | yes | Free + Paid |  |
-| ConfettiSaaS | https://confettisaas.com | 36 | yes | Free + Paid |  |
-| RankYourAI | https://rankyourai.com | 35 | yes | Free |  |
-| launch.cab | https://launch.cab | 34 | yes | Free |  |
-| aat.ee | https://www.aat.ee | 34 | yes | Free + Paid |  |
-| Made with Lovable | https://madewithlovable.com | 33 | yes | Free |  |
-| ShipYard HQ | https://shipyardhq.dev | 33 | yes | Free + Paid |  |
-| Best of Web | https://www.bestofweb.site | 32 | yes | Free |  |
-| LLM Relevance | https://llmrelevance.com | 31 | yes | Free |  |
-| Resource.fyi | https://resource.fyi | 31 | yes | Free |  |
-| Builtbyindies | https://builtbyindies.com | 30 | yes | Free + Paid |  |
-| Stellar Launch | https://stellarlaunch.org | 30 | no | Free + Paid |  |
-| IndieHackerStacks | https://indiehackerstacks.com | 30 | yes | Free |  |
-| HUNT0 | https://hunt0.com | 29 | yes | Free + Paid |  |
+| Proofstories | https://proofstories.io/directory | 43 | yes | Free + Paid | probed Jul 28: /submit/ 200 but JS-hydrated (forms=0, inputs=0) — no plain-HTTP submit; drainer frontier |
+| Daily Pings | https://dailypings.com | 43 | yes | Free + Paid | probed Jul 28: /submit 200 but JS-hydrated (forms=0) + sign-in mentions — drainer frontier |
+| TinyLaunchpad | https://tinylaunchpad.com | 43 | yes | Free + Paid | probed Jul 28: /projects/submit 200 but JS-hydrated (forms=0) + "Sign in" and $10 tier — drainer frontier |
+| Awesome Tools | https://awesome.tools | 42 | no | Free + Paid | probed Jul 28: /submit 200 but empty (forms=0) — drainer frontier |
+| FindYourSaaS | https://www.findyoursaas.com | 41 | yes | Free + Paid | probed Jul 28: homepage yields no hrefs (JS-rendered), no /submit path found — drainer frontier |
+| ProductBurst | https://productburst.com | 40 | yes | Free | probed Jul 28: homepage yields no hrefs (JS-rendered), no /submit path found — drainer frontier |
+| toolfolio | https://toolfolio.io | 39 | no | Free + Paid | probed Jul 28: /submit 200 but empty (forms=0) — drainer frontier |
+| Web Review | https://web-review.com | 39 | yes | Free + Paid | probed Jul 28: /submit 200 but empty (forms=0, inputs=0) — no plain-HTTP submit; drainer frontier |
+| Saaspa.ge | https://www.saaspa.ge | 39 | yes | Free | probed Jul 28: /submit 200 JS-hydrated (forms=0) + sign-in — drainer frontier |
+| DodoDirectory | https://dododirectory.com | 38 | yes | Free + Paid | probed Jul 28: /submit 200 JS-hydrated (forms=0) — drainer frontier |
+| BuildVoyage | https://buildvoyage.com | 38 | yes | Free + Paid | probed Jul 28: /submit is a REAL Laravel form (_token, 24 inputs) but gated by Cloudflare TURNSTILE (23 refs, turnstile_blocked input) + sign-in — datacenter IP fails; needs Camoufox drainer (down). Best plain-form candidate once drainer wakes. |
+| TechTrendin | https://www.techtrendin.com | 37 | yes | Free | probed Jul 28: no submit path found (homepage has no submit/add/new links) |
+| Sumodir | https://sumodir.com | 36 | yes | Free + Paid | probed Jul 28: /submit 200 but empty (forms=0, inputs=0) — drainer frontier |
+| ConfettiSaaS | https://confettisaas.com | 36 | yes | Free + Paid | probed Jul 28: /submit 200 but empty (forms=0) — drainer frontier |
+| RankYourAI | https://rankyourai.com | 35 | yes | Free | probed Jul 28: /p/submit/ 200 JS-hydrated (forms=0) — drainer frontier |
+| launch.cab | https://launch.cab | 34 | yes | Free | probed Jul 28: /submit 200 but empty (forms=0) — drainer frontier |
+| aat.ee | https://www.aat.ee | 34 | yes | Free + Paid | probed Jul 28: /projects/submit 200 JS-hydrated + 22 auth mentions — login-gated; drainer frontier |
+| Made with Lovable | https://madewithlovable.com | 33 | yes | Free | probed Jul 28: no submit path (Lovable-built-products directory — Weekly Brief is not Lovable-built; eligibility mismatch, not a technical wall) |
+| ShipYard HQ | https://shipyardhq.dev | 33 | yes | Free + Paid | probed Jul 28: no plain submit form; auth-gated (7 sign-in mentions) — drainer frontier |
+| Best of Web | https://www.bestofweb.site | 32 | yes | Free | probed Jul 28: /submit 200 but empty (forms=0) — drainer frontier |
+| LLM Relevance | https://llmrelevance.com | 31 | yes | Free | probed Jul 28: no own submit path found (homepage submit links point off-site) — drainer frontier |
+| Resource.fyi | https://resource.fyi | 31 | yes | Free | probed Jul 28: /submit, /submit-resource, /add all return the SAME soft-200 catch-all (SPA fallback) — no real submit route |
+| Builtbyindies | https://builtbyindies.com | 30 | yes | Free + Paid | probed Jul 28: /submit 200 but empty (forms=0) — drainer frontier |
+| Stellar Launch | https://stellarlaunch.org | 30 | no | Free + Paid | probed Jul 28: no own submit path (homepage links go off-site) — drainer frontier |
+| IndieHackerStacks | https://indiehackerstacks.com | 30 | yes | Free | probed Jul 28: only a newsletter form; no product-submit path found — drainer frontier |
+| HUNT0 | https://hunt0.com | 29 | yes | Free + Paid | probed Jul 28: /submit renders a full React form (21 inputs, free tier checked / paid disabled) but inputs have NO name attrs (client-side POST to an API) + captcha + sign-in — no plain-HTTP submit; drainer frontier |
 | AwesomeIndie | https://awesomeindie.com | 28 | no | Free | SUBMITTED (pending; re-poll Jul 26 — /weekly-brief, /products/, /apps/, /indie/ all 404, not on homepage → not live yet; re-poll ~Aug 5) |
-| Bulletin | https://bulletin.so | 27 | yes | Free |  |
-| SaaSGrow | https://saasgrow.app | 26 | yes | Free + Paid |  |
-| EuroAlternative | https://euroalternative.co | 26 | yes | Free |  |
-| startuups | https://startuups.com | 26 | yes | Free + Paid |  |
-| ProductLaunchpad | https://productlaunchpad.app | 23 | yes | Free |  |
+| Bulletin | https://bulletin.so | 27 | yes | Free | probed Jul 28: DOWN — curl HTTP 000 (connection/TLS failure) on https://bulletin.so |
+| SaaSGrow | https://saasgrow.app | 26 | yes | Free + Paid | probed Jul 28: /submit 200 JS-hydrated (forms=0) + sign-in — drainer frontier |
+| EuroAlternative | https://euroalternative.co | 26 | yes | Free | probed Jul 28: /submit 200 but JS-hydrated (forms=1/inputs=2 only) + 31 auth mentions — login-gated; drainer frontier |
+| startuups | https://startuups.com | 26 | yes | Free + Paid | probed Jul 28: /projects/submit 200 JS-hydrated (forms=1/inputs=1) + sign-in — drainer frontier |
+| ProductLaunchpad | https://productlaunchpad.app | 23 | yes | Free | probed Jul 28: /submit 200 JS-hydrated (forms=1/inputs=2) + 20 auth mentions — login-gated; drainer frontier |
 | Justgotfound | https://justgotfound.com | 20 | yes | Free | site down/TLS-broken (seen Jul 13) |
-| madewithbolt | https://madewithbolt.com | 20 | no | Free |  |
-| Launch Vibe | https://www.launchvibe.app | 12 | yes | Free |  |
-| Launchy.tools | https://launchy.tools | 7 | yes | Free + Paid |  |
+| madewithbolt | https://madewithbolt.com | 20 | no | Free | KILLED Jul 28: real plain-HTTP Laravel POST form at /submit-project (no auth, no captcha) BUT "Only projects built with Bolt will be accepted" — Weekly Brief is not Bolt-built; ineligible, submitting would be a fabricated fit |
+| Launch Vibe | https://www.launchvibe.app | 12 | yes | Free | probed Jul 28: /submit 200 but empty (forms=0) — drainer frontier |
+| Launchy.tools | https://launchy.tools | 7 | yes | Free + Paid | probed Jul 28: homepage 200 but no submit form/path surfaced — drainer frontier |
 
 ## Paid-only (21) — money gate, do NOT submit without approval
 | Directory | URL | DR | Follow | Pricing | Status (WeeklyBrief) |
@@ -124,19 +124,19 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | SubmitAiTools | https://submitaitools.org | 75 | no | Paid |  |
 | Uneed | https://www.uneed.best?atp=pBmSdT | 75 | yes | Paid | SUBMITTED-VERIFIED via free waiting line (launch Nov 30) |
 | Indie Deals | https://www.indie.deals | 60 | yes | Paid | SUBMITTED free (still not public Jul 25 re-poll — /deals/weekly-brief serves catch-all homepage, not a listing; well past their ~96h estimate; badge stays in footer — re-poll ~Aug 1) |
-| aiwith.me | https://aiwith.me | 59 | yes | Paid |  |
+| aiwith.me | https://aiwith.me | 59 | yes | Paid | probed Jul 28: /submit 200, single form, 3 inputs, no captcha, but sign-in words + a price ladder ($8-$39) on page — paid/auth lane, not free-submittable over plain HTTP. |
 | SoloPush | https://solopush.com | 45 | yes | Paid | killed-for-now (backend NXDOMAIN) |
-| AiTools | https://aitools.fyi | 44 | yes | Paid |  |
-| Startups.fm | https://startups.fm | 42 | yes | Paid |  |
+| AiTools | https://aitools.fyi | 44 | yes | Paid | probed Jul 28: /submit is a Tally form (form 2EkV4g, "Boost My Tool Submission") with NO captcha and NO auth, but its final block is a REQUIRED PAYMENT ("Submission Fee") — genuinely paid, tier classification correct. KILLED for the free lane (money gate). |
+| Startups.fm | https://startups.fm | 42 | yes | Paid | **SUBMITTED Jul 28 (free tier)** — MISCLASSIFIED as paid-only: /submit is "one quick form, no account needed", free lane = £0. Plain-HTTP POST to /api/submit (no auth, no captcha) returned {"ok":true,"submissionId":"a746bbcc-882e-4a53-8299-60e2d6657b06","slug":"weekly-brief"}; did NOT call /api/submit/plan (that is the paid skip-the-queue upsell). Free terms: NOFOLLOW link + Startups.fm badge required on our site to stay listed (badge SVG served at /badge/weekly-brief — NOTE: that endpoint renders for any slug, so it is NOT proof the listing exists; the only evidence is the API acknowledgment above). Listing not public yet (review queue) — re-poll ~Aug 4, then ship the badge with the real listing URL. |
 | startuplist.ing | https://startuplist.ing | 41 | yes | Paid |  |
-| IndieHub | https://indiehub.best | 39 | no | Paid |  |
+| IndieHub | https://indiehub.best | 39 | no | Paid | probed Jul 28: /submit 200 but 25 auth references and zero "free" mentions, prices $10/$14 — login + paid. Not free-submittable. |
 | 1000.tools | https://1000.tools | 38 | no | Paid |  |
 | SubmitHunt | https://www.submithunt.com | 36 | yes | Paid | blocked (Google-only login; bot Google session dead — card 88a4ad07) |
 | Startups.fyi | https://startups.fyi | 30 | yes | Paid |  |
 | ToolHub | https://toolhub.me | 26 | yes | Paid |  |
-| Toollist | https://toollist.ai | 25 | yes | Paid |  |
+| Toollist | https://toollist.ai | 25 | yes | Paid | probed Jul 28: /submit-tool 200, auth-gated, prices $29/$47/$99/$249 — paid. Not free-submittable. |
 | Saassy Board | https://saassy-board.com | 21 | yes | Paid |  |
-| Postioo | https://postioo.com | 7 | yes | Paid |  |
+| Postioo | https://postioo.com | 7 | yes | Paid | probed Jul 28: /submit 200 but JS-rendered (form element with 0 static inputs); price ladder present — needs a rendered browser to even read the form. Drainer frontier. |
 
 ## How to re-scrape (next time)
 ```bash

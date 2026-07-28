@@ -20,13 +20,17 @@ the loop can add the verification TXT automatically — hand it the token and it
 ## Use it
 ```
 tools/gsc.py sites                                   # list properties the SA can see
-tools/gsc.py sitemaps        "https://brief.limed.tech/"
-tools/gsc.py submit-sitemap  "https://brief.limed.tech/" "https://brief.limed.tech/sitemap.xml"
-tools/gsc.py analytics       "https://brief.limed.tech/" --days 28 --dim query --rows 25
-tools/gsc.py inspect         "https://brief.limed.tech/" "https://brief.limed.tech/send-substack-to-kindle-free"
+tools/gsc.py sitemaps        "sc-domain:limed.tech"
+tools/gsc.py submit-sitemap  "sc-domain:limed.tech" "https://brief.limed.tech/sitemap.xml"
+tools/gsc.py analytics       "sc-domain:limed.tech" --days 28 --dim query --rows 25
+tools/gsc.py inspect         "sc-domain:limed.tech" "https://brief.limed.tech/send-substack-to-kindle-free"
 ```
-`<siteUrl>` = the exact GSC property string: URL-prefix `https://brief.limed.tech/` OR domain
-property `sc-domain:limed.tech`. `analytics` prints clicks/impressions/ctr/position (top rows +
+`<siteUrl>` = the exact GSC property string. **The service account holds DOMAIN properties only:
+`sc-domain:limed.tech` and `sc-domain:dinnerelite.com`** — run `tools/gsc.py sites` if unsure.
+URL-prefix strings like `https://brief.limed.tech/` are NOT held and return HTTP 403
+`PERMISSION_DENIED` ("You do not own this site"); a domain property covers every subdomain, so
+inspect/analytics for brief.limed.tech pages go through `sc-domain:limed.tech`.
+`analytics` prints clicks/impressions/ctr/position (top rows +
 totals) for the last N days (GSC lags ~1–3 days, so it ends yesterday). `inspect` returns the
 real indexing verdict/coverage/last-crawl for one URL.
 

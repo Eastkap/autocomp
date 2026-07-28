@@ -18,8 +18,9 @@ Usage:
     tools/gsc.py analytics       <siteUrl> [--days 28] [--dim query|page|date] [--rows 25]
     tools/gsc.py inspect         <siteUrl> <pageUrl>
 
-<siteUrl> is the exact property string in GSC: a URL-prefix like "https://brief.limed.tech/"
-or a domain property like "sc-domain:limed.tech".
+<siteUrl> is the exact property string in GSC. Our service account holds DOMAIN properties only
+("sc-domain:limed.tech", "sc-domain:dinnerelite.com") — URL-prefix strings like
+"https://brief.limed.tech/" are not held and 403 with PERMISSION_DENIED. Run `sites` if unsure.
 """
 import base64
 import json

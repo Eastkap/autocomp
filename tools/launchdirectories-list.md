@@ -27,9 +27,9 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | SaaSHub | https://www.saashub.com | 79 | yes | Free | SUBMITTED (pending ~Aug 8) |
 | Peerlist | https://peerlist.io | 77 | no | Free | KILLED Jul 14 (batch B): login + LinkedIn/profile verification gate |
 | BetaList | https://betalist.com | 76 | yes | Free | killed (publish is $39 paid-only) |
-| Alternative.me | https://alternative.me | 75 | yes | Free | SUBMITTED (pending) |
-| LaunchIgniter | https://launchigniter.com | 75 | no | Free + Paid | SUBMITTED (pending approval; still soft-404 Jul 16 — re-poll ~Jul 20) |
-| PeerPush | https://peerpush.net | 74 | yes | Free + Paid | SUBMITTED-VERIFIED (queue #1603, ~Jul 30) |
+| Alternative.me | https://alternative.me | 75 | yes | Free | SUBMITTED (pending; re-poll Jul 26 — /weekly-brief, /software/, /apps/ all 404, not in site search → not live yet, no rejection; re-poll ~Aug 5) |
+| LaunchIgniter | https://launchigniter.com | 75 | no | Free + Paid | SUBMITTED (pending approval; /product/weekly-brief soft-200 "Product Not Found" on Jul 25 re-poll — still not live 8+ days post-submit; likely silently dropped; re-poll Jul 26 STILL "Product Not Found" 11d post-submit — confirms drop, final re-poll ~Aug 1 then kill) |
+| PeerPush | https://peerpush.net | 74 | yes | Free + Paid | LIVE Jul 24 (published early, was queued ~Jul 30): peerpush.com/p/weekly-brief HTTP 200 logged-out, 'Launched', FOLLOWED backlink (rel=noopener, no nofollow) to brief.limed.tech — 12th live listing, first live dofollow from DR-74 |
 | SoftwareWorld | https://www.softwareworld.co | 73 | yes | Free + Paid | KILLED Jul 14 (batch B): CF bot-verification wall on submit page |
 | TinyLaunch | https://www.tinylaunch.com | 72 | yes | Free + Paid | SUBMITTED (launch Aug 10) |
 | FoundrList | https://foundrlist.com | 72 | yes | Free | KILLED Jul 14 (batch B): paid-only, no free tier |
@@ -38,8 +38,8 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | startupfa.st | https://www.startupfa.st | 71 | no | Free + Paid | badge captured Jul 14 → badge live on all 12 site pages; free-launch job e51221d5 queued |
 | SideProjectors | https://www.sideprojectors.com | 70 | yes | Free + Paid | parked Jul 14 (batch B): login works (session saved), but multi-step for-sale marketplace — modest value |
 | magicbox.tools | https://magicbox.tools | 70 | yes | Free + Paid | KILLED Jul 14 (batch B): paid-only, no free tier |
-| Future Tools | https://www.futuretools.io | 69 | yes | Free | SUBMITTED (manual review ~Jul 24) |
-| Pitchwall | https://pitchwall.co | 69 | no | Free + Paid | SUBMITTED (under review) |
+| Future Tools | https://www.futuretools.io | 69 | yes | Free | SUBMITTED (manual review ~Jul 24; re-poll Jul 26 futuretools.io/tools/weekly-brief → 404 "Page Not Found", 2d past ETA — not yet published, still in manual review; re-poll ~Aug 2) |
+| Pitchwall | https://pitchwall.co | 69 | no | Free + Paid | SUBMITTED (under review; re-poll Jul 26 /product|/startup|/p/weekly-brief all 404 — still not live, no rejection mail; re-poll ~Aug 2) |
 | Tiny Startups | https://tinystartups.com | 69 | yes | Free | APPROVED Jul 14 (badge verified, “cleared to go live”); launches Mon Sep 28 2026 |
 | TrustMRR | https://trustmrr.com | 68 | yes | Free | killed Jul 13 (listing requires Stripe key; acquisition marketplace) |
 | AiTools | https://aitools.inc | 68 | no | Free + Paid | BLOCKED Jul 14 (batch C): no free form surfaced (likely login/paid wizard) |
@@ -58,7 +58,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | StartupBase | https://startupbase.io | 58 | yes | Free + Paid | engagement-gated (5 upvotes + 3 comments unlock submit; seen Jul 13) |
 | Huzzler | https://huzzler.so | 58 | yes | Free + Paid | BLOCKED Jul 14 (batch C): no free form (likely login-gated community) |
 | EarlyHunt | https://earlyhunt.com | 57 | yes | Free + Paid | SUBMITTED (scheduled 2027-W11) |
-| FridayHunt | https://fridayhunt.com | 57 | yes | Free + Paid | SUBMITTED (launch Fri Jul 17 NOT published — soft-404 all day, no rejection mail; re-poll ~Jul 20) |
+| FridayHunt | https://fridayhunt.com | 57 | yes | Free + Paid | SUBMITTED (launch Fri Jul 17 NOT published; re-poll Jul 26 STILL soft-404 at /products/ + /product/ — 9d past launch, no rejection mail → treat as silently dropped; stop polling unless a submit-confirmation surfaces) |
 | Startups Lab | https://startupslab.site | 55 | yes | Free + Paid | BLOCKED Jul 16: Turnstile at email signup unclickable (closed shadow DOM) on datacenter IP; Google-OAuth alt dead until session re-capture (card 88a4ad07) |
 | Firsto | https://firsto.co | 55 | no | Free | SUBMITTED Jul 17 (free lane via 'Earliest available' button; launch Jan 13 2027; listing live at firsto.co/projects/weekly-brief) — footer-badge offer moves launch to Aug 16 2026 + DR-55 dofollow, routed to cto (card 01d861e7) |
 | Launch | https://trylaunch.ai | 54 | yes | Free + Paid | LIVE Jul 17 (free lane, GitHub OAuth; trylaunch.ai/launch/weekly-brief — 'Launch complete'; backlink rel unconfirmed, qa card 06db1f31) |
@@ -66,16 +66,16 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | hot100 | https://www.hot100.ai | 52 | yes | Free | LIVE (/project/2167) |
 | Launching Next | https://www.launchingnext.com | 52 | yes | Free | SUBMITTED (~4-month queue) |
 | AI Tech Viral | https://aitechviral.com | 52 | no | Free |  |
-| Shipybara | https://shipybara.com | 52 | yes | Free + Paid |  |
+| Shipybara | https://shipybara.com | 52 | yes | Free + Paid | probed Jul 25: /submit 404 (no plain-HTTP path); revisit via Camoufox drainer |
 | rankinpublic.xyz | https://rankinpublic.xyz | 52 | no | Free + Paid |  |
-| AppaList | https://appalist.com | 51 | yes | Free + Paid |  |
-| Open Alternative | https://openalternative.co | 51 | yes | Free |  |
+| AppaList | https://appalist.com | 51 | yes | Free + Paid | probed Jul 26: /submit is login-gated (`/api/auth/google?redirect=/submit` + `/login`/`/signup`; no plain-HTTP submit form) — Camoufox drainer frontier (down); dofollow DR-51 worth a launch when drainer wakes |
+| Open Alternative | https://openalternative.co | 51 | yes | Free | probed Jul 25: /submit is login-gated ('Sign In' dominates) + JS-hydrated Next.js; needs Camoufox drainer (down) — no plain-HTTP submit |
 | We Like Tools | https://weliketools.com | 50 | no | Free + Paid |  |
-| StartupTrusted | https://startuptrusted.com | 49 | yes | Free + Paid |  |
+| StartupTrusted | https://startuptrusted.com | 49 | yes | Free + Paid | probed Jul 25: /submit gated behind 'Sign in with Email' + JS-hydrated Next.js; needs Camoufox drainer (down) |
 | IdeaKiln | https://ideakiln.com | 48 | yes | Free |  |
-| Promote Project | https://www.promoteproject.com | 48 | yes | Free | SUBMITTED (pending review; still 404 + 0 search hits Jul 16 — re-poll ~Jul 20) |
+| Promote Project | https://www.promoteproject.com | 48 | yes | Free | SUBMITTED (pending review; re-poll Jul 26 still 404 at /startup/ + /product/ — 10+d, no listing → treat as silently dropped; stop polling) |
 | Micro SaaS Examples | https://www.microsaasexamples.com | 47 | no | Free + Paid |  |
-| SaaSBison | https://saasbison.com | 45 | yes | Free + Paid |  |
+| SaaSBison | https://saasbison.com | 45 | yes | Free + Paid | probed Jul 25: /submit 200 with free tier but JS-hydrated Next.js form (paid expedite $12-21); no plain-HTTP submit — needs Camoufox drainer |
 | Proofstories | https://proofstories.io/directory | 43 | yes | Free + Paid |  |
 | Daily Pings | https://dailypings.com | 43 | yes | Free + Paid |  |
 | TinyLaunchpad | https://tinylaunchpad.com | 43 | yes | Free + Paid |  |
@@ -102,7 +102,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | Stellar Launch | https://stellarlaunch.org | 30 | no | Free + Paid |  |
 | IndieHackerStacks | https://indiehackerstacks.com | 30 | yes | Free |  |
 | HUNT0 | https://hunt0.com | 29 | yes | Free + Paid |  |
-| AwesomeIndie | https://awesomeindie.com | 28 | no | Free | SUBMITTED (pending) |
+| AwesomeIndie | https://awesomeindie.com | 28 | no | Free | SUBMITTED (pending; re-poll Jul 26 — /weekly-brief, /products/, /apps/, /indie/ all 404, not on homepage → not live yet; re-poll ~Aug 5) |
 | Bulletin | https://bulletin.so | 27 | yes | Free |  |
 | SaaSGrow | https://saasgrow.app | 26 | yes | Free + Paid |  |
 | EuroAlternative | https://euroalternative.co | 26 | yes | Free |  |
@@ -123,7 +123,7 @@ Re-scrape recipe at the bottom. Sorted by Ahrefs Domain Rating (DR) desc within 
 | There's An AI For That | https://theresanaiforthat.com/?via=krzysztof | 77 | yes | Paid |  |
 | SubmitAiTools | https://submitaitools.org | 75 | no | Paid |  |
 | Uneed | https://www.uneed.best?atp=pBmSdT | 75 | yes | Paid | SUBMITTED-VERIFIED via free waiting line (launch Nov 30) |
-| Indie Deals | https://www.indie.deals | 60 | yes | Paid | SUBMITTED free (still not public Jul 16, past their ~96h estimate; badge stays in footer — re-poll ~Jul 20) |
+| Indie Deals | https://www.indie.deals | 60 | yes | Paid | SUBMITTED free (still not public Jul 25 re-poll — /deals/weekly-brief serves catch-all homepage, not a listing; well past their ~96h estimate; badge stays in footer — re-poll ~Aug 1) |
 | aiwith.me | https://aiwith.me | 59 | yes | Paid |  |
 | SoloPush | https://solopush.com | 45 | yes | Paid | killed-for-now (backend NXDOMAIN) |
 | AiTools | https://aitools.fyi | 44 | yes | Paid |  |

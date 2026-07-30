@@ -86,6 +86,58 @@ print(f"\n  Rule 17 gate: NO new venture or new feature until every active ventu
 print(f"  live GTM + flowing stats. A 'SELL' verdict means the next move is distribution, not build.\n")
 PY
 
+# --- leads: the actual people behind the "signups" column ---
+# Why this exists: for 12 days every tick reported "3 signups (all test artifacts, real=0)" while a
+# REAL inbound lead sat in weeklybrief.signups un-contacted. An aggregate count let a narrative
+# ("they're all tests") stand in for a lookup. This block does the lookup, every run.
+# A real lead with contacted_at IS NULL is the loudest line on the scoreboard by design.
+python3 - "$URL" "$KEY" <<'PY' || true
+import sys, os, json, urllib.request
+URL, KEY = sys.argv[1], sys.argv[2]
+def get(schema, path):
+    req = urllib.request.Request(URL + "/rest/v1/" + path, headers={
+        "apikey": KEY, "authorization": "Bearer " + KEY, "accept-profile": schema})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return json.load(r)
+
+# Test/owner rows are excluded by rule, never by memory. OWNER_EMAILS is a gitignored .env value
+# so no personal address is ever hardcoded into this tracked file.
+OWNERS = {e.strip().lower() for e in os.environ.get("OWNER_EMAILS", "").split(",") if e.strip()}
+TEST_DOMAINS = ("example.com", "example.org", "example.net", "test.com", "localhost")
+def is_test(email):
+    e = (email or "").lower()
+    return e in OWNERS or e.endswith(TEST_DOMAINS) or "+test" in e or e.startswith("test@")
+
+try:
+    companies = [c["slug"] for c in get("autocomp", "companies?select=slug&status=eq.active")]
+except Exception:
+    companies = []
+lines, uncontacted = [], 0
+for slug in companies:
+    try:
+        rows = get(slug, "signups?select=email,created_at,source_page,contacted_at&order=created_at")
+    except Exception:
+        continue  # venture has no signups table yet — not an error
+    real = [r for r in rows if not is_test(r.get("email"))]
+    if not rows:
+        continue
+    lines.append(f"  {slug:<13} {len(rows)} signup row(s), {len(real)} real (rest = owner/test)")
+    for r in real:
+        when = (r.get("created_at") or "")[:10]
+        done = r.get("contacted_at")
+        mark = f"contacted {done[:10]}" if done else "** NEVER CONTACTED **"
+        if not done:
+            uncontacted += 1
+        lines.append(f"  {'':<13}   · {r['email']}  ({when}, via {r.get('source_page') or '?'})  — {mark}")
+if lines:
+    print("  LEADS (real people, not an aggregate):")
+    print("\n".join(lines))
+    if uncontacted:
+        print(f"\n  >> {uncontacted} REAL LEAD(S) NEVER CONTACTED. Rule 17: converting one of these")
+        print(f"  >> outranks any impressions work this tick. Set contacted_at when you reply.")
+    print()
+PY
+
 # --- funnel: top-of-funnel from GSC (impressions → clicks), domain-wide, last 28d ---
 # The compass (CLAUDE.md tick §3): every tick should move one of impressions·clicks·signups·MRR.
 FUNNEL="$(python3 tools/gsc.py analytics sc-domain:limed.tech --dim query --days 28 2>/dev/null || true)"

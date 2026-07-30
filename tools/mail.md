@@ -94,9 +94,14 @@ still `route{1,2,3}.mx.cloudflare.net`. Domain status in Resend: **verified** (a
 `tools/send.sh hello@autocomp.limed.tech … ` → Resend `200 {id}` → Cloudflare Email Routing →
 Worker → `autocomp.inbox` row 50, `from_addr` on `send.autocomp.limed.tech`. Full loop closed.
 
-**Honest gap:** we have no *header-level* SPF/DKIM/DMARC pass verdict. `mail/worker.js` does not
-store `Authentication-Results`, so "verified" above means Resend's DNS check plus our own `dig` —
-not a receiving MTA's authentication result. Don't upgrade that claim without evidence.
+**Gap partly closed (Tick 129).** We still store no `Authentication-Results` header, so there is
+no verdict string to quote. But the first send to a *real external* recipient
+(`jim.vajda@icloud.com`, 2026-07-30) came back `last_event: delivered`. iCloud is strict about
+sender authentication and routes unauthenticated mail from an unknown domain to junk or rejects it
+outright, so an accepted message is meaningful third-party evidence the DKIM/SPF/DMARC setup is
+sound — which a send into our own inbox could never be, since we control both ends. Still short of
+a quoted header verdict: `delivered` means the receiving MTA accepted it, not that it landed in
+the inbox rather than the junk folder. Don't claim inbox placement.
 
 A probe to `check-auth@verifier.port25.com` **bounced** (`last_event: bounced`, type
 `Undetermined`) — that service did not merely fail to reply, it failed to accept the message.
@@ -108,8 +113,20 @@ Read delivery state from the API, never from the absence of a reply:
 |---|---|---|
 | 2026-07-30 | `hello@autocomp.limed.tech` (self-test) | delivered |
 | 2026-07-30 | `check-auth@verifier.port25.com` | **bounced** |
-| 2026-07-30 | `a@b.com` (stray test by a reviewer probing the guard) | **bounced** |
+| 2026-07-30 | `a@b.com` (stray test by a reviewer probing the guard) | **delivery_delayed** |
+| 2026-07-30 | `jim.vajda@icloud.com` (first real recipient, opted in) | delivered |
 
-2 bounces in 3 sends on day one. Both were self-inflicted tests, not real recipients — but that is
+**1 hard bounce in 4 sends**, plus 1 `delivery_delayed` that will likely convert to a second
+bounce. Corrected on Tick 129: the close-out of Tick 128 recorded the `a@b.com` test as *bounced*
+when the API says `delivery_delayed` — a small overstatement in the pessimistic direction, but the
+whole point of this table is that the number comes from the provider rather than from an
+impression. Both bad addresses were self-inflicted tests, not real recipients. That is still
 exactly the pattern that gets a new sending domain throttled, which is why dry-run is now the
-default and placeholder addresses are refused.
+default and placeholder addresses are refused. Every send since has been to a real,
+opted-in address.
+
+**Reading the API needs `curl`, not Python.** `api.resend.com` sits behind Cloudflare and returns
+**HTTP 403 error code 1010** (banned browser signature) to `python3 urllib` — with no Resend error
+body, so it reads like an auth failure and sends you hunting for a bad key. The key is fine; the
+client is. Use `curl` for every read:
+`curl -s -H "Authorization: Bearer $RESEND_API_KEY" https://api.resend.com/emails/<id>`

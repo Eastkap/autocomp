@@ -16,6 +16,8 @@
 //   {"fill":["<selector>","value"]} set an input's value
 //   {"type":["<selector>","value"]} type key-by-key (humanized)
 //   {"click":"<selector>"}          click (Playwright selector — supports text=, role=, css)
+//   {"clickNav":"<selector>"}       click that NAVIGATES (OAuth consent, form submit) — a plain
+//                                   click throws a bogus timeout on these and aborts the run
 //   {"press":"Enter"} | {"press":["<sel>","Enter"]}   keyboard
 //   {"select":["<selector>","value"]}                 <select> option
 //   {"upload":["<file-input-selector>","/local/path"]} set a file on an <input type=file>
@@ -69,6 +71,21 @@ try {
         else if (verb === "fill") await page.fill(v[0], v[1], { timeout: 15000 });
         else if (verb === "type") await page.type(v[0], v[1], { delay: 40, timeout: 15000 });
         else if (verb === "click") await page.click(v, { timeout: 15000 });
+        // clickNav: a click that navigates. Playwright's post-click actionability re-check
+        // races the navigation and throws "Timeout exceeded" on a click that in fact WORKED —
+        // which aborts the whole steps run mid-flow (cost us 3 runs on an OAuth consent screen,
+        // Tick 128). Swallow that specific failure, then report the URL we landed on so the
+        // caller can tell a real miss (url unchanged) from a navigation.
+        else if (verb === "clickNav") {
+          const before = page.url();
+          await page.click(v, { timeout: 15000 }).catch((e) => {
+            console.error(`  ↳ click threw (likely navigation): ${(e.message || "").split("\n")[0].slice(0, 70)}`);
+          });
+          await page.waitForLoadState("domcontentloaded", { timeout: 30000 }).catch(() => {});
+          await page.waitForTimeout(2000);
+          const after = page.url();
+          console.error(`  ↳ url ${after === before ? "UNCHANGED (click may not have landed)" : "→ " + after.slice(0, 110)}`);
+        }
         else if (verb === "select") await page.selectOption(v[0], v[1], { timeout: 15000 });
         else if (verb === "upload") await page.setInputFiles(v[0], v[1], { timeout: 15000 });
         else if (verb === "wait") await page.waitForTimeout(Number(v));

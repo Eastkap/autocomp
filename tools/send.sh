@@ -13,9 +13,15 @@
 # Env (.env): RESEND_API_KEY. MAIL_FROM overrides the default sender.
 #
 # Usage:
-#   tools/send.sh <to> <subject> <body-file>     # body read from a file
-#   tools/send.sh <to> <subject> -               # body read from stdin
-#   tools/send.sh --dry-run <to> <subject> -     # print the payload, send nothing
+#   tools/send.sh <to> <subject> <body-file>          # DRY RUN by default — prints, sends nothing
+#   tools/send.sh --send <to> <subject> <body-file>   # actually send
+#   tools/send.sh --send <to> <subject> -             # body from stdin
+#
+# DRY RUN IS THE DEFAULT, deliberately. The first version of this script sent on every
+# invocation without `--dry-run`, and a reviewer probing the recipient guard sent a live
+# message to a junk address within the hour — which then bounced off a brand-new, unwarmed
+# sending domain. A tool whose safe mode is the one you have to remember is the wrong shape
+# for the one gated class it touches.
 #
 # Honest-reporting: prints Resend's HTTP status + response body. A non-2xx exits non-zero.
 # Never claim a send that did not return an id.
@@ -25,8 +31,11 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 [ -f .env ] && { set -a; . ./.env; set +a; }
 
-dry=0
-if [ "${1:-}" = "--dry-run" ]; then dry=1; shift; fi
+dry=1
+case "${1:-}" in
+  --send)    dry=0; shift;;
+  --dry-run) dry=1; shift;;   # accepted for readability; already the default
+esac
 
 to="${1:-}"; subject="${2:-}"; bodysrc="${3:-}"
 if [ -z "$to" ] || [ -z "$subject" ] || [ -z "$bodysrc" ]; then
@@ -58,8 +67,16 @@ print(json.dumps({
 }))')"
 
 if [ "$dry" = 1 ]; then
-  echo "DRY RUN — nothing sent. Payload:"; echo "$payload"; exit 0
+  echo "DRY RUN (default) — nothing sent. Re-run with --send to actually send. Payload:"
+  echo "$payload"; exit 0
 fi
+
+# Junk/example recipients are always a test that escaped, never a real send. Bounces on an
+# unwarmed domain cost real reputation, so refuse them outright.
+case "$to" in
+  *@example.com|*@example.org|*@example.net|*@test.com|a@b.com|*@localhost)
+    echo "send.sh: '$to' is a placeholder address — refusing to send (bounces cost domain reputation)" >&2; exit 2;;
+esac
 
 if [ -z "${RESEND_API_KEY:-}" ]; then
   echo "send.sh: RESEND_API_KEY unset — sending is not provisioned. Not faking a send." >&2

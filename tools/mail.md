@@ -42,9 +42,14 @@ outbound = the loop calls a transactional provider's HTTP API (**Resend** free t
 SES) with **autocomp.limed.tech** as the sender domain.
 
 ```
-tools/send.sh <to> <subject> <body-file|->      # one recipient, no CC/BCC, no list send
-tools/send.sh --dry-run <to> <subject> -        # print the payload, send nothing
+tools/send.sh <to> <subject> <body-file|->          # DRY RUN by default — prints, sends nothing
+tools/send.sh --send <to> <subject> <body-file|->   # actually send; one recipient, no CC/BCC
 ```
+**Dry run is the default on purpose.** The first cut sent on every invocation without
+`--dry-run`, and a reviewer probing the recipient guard put a live message on a junk address
+within the hour, which bounced off the brand-new domain. It also refuses placeholder recipients
+(`example.com`, `a@b.com`, …) outright — a bounce is a reputation cost, and a placeholder is
+always a test that escaped.
 Reads `RESEND_API_KEY` from `.env`. With no key it exits 3 and says sending is not provisioned —
 it never fakes a send. It refuses more than one recipient by design: mass/cold outbound from
 `autocomp.limed.tech` is a **gated** class (CLAUDE.md hard rule c) and must not be shell-looped
@@ -90,6 +95,21 @@ still `route{1,2,3}.mx.cloudflare.net`. Domain status in Resend: **verified** (a
 Worker → `autocomp.inbox` row 50, `from_addr` on `send.autocomp.limed.tech`. Full loop closed.
 
 **Honest gap:** we have no *header-level* SPF/DKIM/DMARC pass verdict. `mail/worker.js` does not
-store `Authentication-Results`, and a probe to the `check-auth@verifier.port25.com` verifier got no
-reply within ~2.5 min. "Verified" above means Resend's DNS check plus our own `dig` — not a
-receiving MTA's authentication result. Don't upgrade that claim without evidence.
+store `Authentication-Results`, so "verified" above means Resend's DNS check plus our own `dig` —
+not a receiving MTA's authentication result. Don't upgrade that claim without evidence.
+
+A probe to `check-auth@verifier.port25.com` **bounced** (`last_event: bounced`, type
+`Undetermined`) — that service did not merely fail to reply, it failed to accept the message.
+Read delivery state from the API, never from the absence of a reply:
+`curl -s -H "Authorization: Bearer $RESEND_API_KEY" "https://api.resend.com/emails?limit=20"`.
+
+**Domain reputation ledger** (an unwarmed domain has none to spare — keep this honest):
+| date | to | outcome |
+|---|---|---|
+| 2026-07-30 | `hello@autocomp.limed.tech` (self-test) | delivered |
+| 2026-07-30 | `check-auth@verifier.port25.com` | **bounced** |
+| 2026-07-30 | `a@b.com` (stray test by a reviewer probing the guard) | **bounced** |
+
+2 bounces in 3 sends on day one. Both were self-inflicted tests, not real recipients — but that is
+exactly the pattern that gets a new sending domain throttled, which is why dry-run is now the
+default and placeholder addresses are refused.

@@ -73,10 +73,11 @@ spawns is untuned and the status column may read `unknown` between cycles. That'
 plan Open Questions defers manifest tuning until someone watches the live TUI. The lanes run
 fine regardless.
 
-**Honest failure notes:** closing a herdr tab kills that lane's runner — the lane is then
-dead until you restart it (the watchdog ntfy's on the stale heartbeat, it does not restart
-anything). herdr does NOT autostart at boot; the laptop is a foreground surface, the VPS is
-the 24/7 home.
+**Honest failure notes:** closing a herdr tab kills that lane's runner — the lane is then dead
+until you restart it. The watchdog ntfy's on the stale heartbeat and now also tries a restart,
+but its recovery path is the VPS tmux session only (`lanes-tmux.sh ensure`); it cannot revive a
+herdr tab on the laptop. herdr does NOT autostart at boot; the laptop is a foreground surface,
+the VPS is the 24/7 home.
 
 ## VPS (headless, 24/7) — tmux via `tools/lanes-tmux.sh`
 
@@ -85,9 +86,27 @@ One tmux session `lanes`, one window per role (roles are data: one window per
 
 ```
 tools/lanes-tmux.sh start     # create session (GUARDED — see below)
+tools/lanes-tmux.sh ensure    # self-heal: recreate only MISSING/DEAD lane windows (GUARDED, idempotent)
 tools/lanes-tmux.sh status    # tmux windows + pause sentinels + DB lease/heartbeat summary
 tools/lanes-tmux.sh stop      # TERM each lane's process group (releases leases), then kill-session
 ```
+
+**Self-healing (added 31 Jul, card 27e25d22).** `start` is idempotent at the *session* level, so
+for two weeks a single lane window dying left nothing that could bring it back: gtm crashed on
+28 Jul and again on 30 Jul, and the second outage ran ~11h with the phone alert already sent and
+the distribution engine simply off. Three changes close that:
+- `ensure` respawns only the windows that are missing or whose pane is dead, rate-limited per
+  role by `ENSURE_MIN_GAP_MIN` (default 60) so a crash-looping lane is not hammered.
+- `watchdog.sh` (already cron'd `*/30`) now calls `ensure` **before** it alerts, and reports what
+  the restart did in the push body — detection became recovery.
+- `role-loop.sh` appends one line per exit to `private/state/lane-runs/<role>-exits.log`
+  (timestamp, exit code, host, pid). Previously a dead runner left nothing at all: `remain-on-exit`
+  was being set on the session, which tmux applies to the *current window only*, so only `ceo`
+  ever had it and the other three windows closed without scrollback. It is now set per window.
+  SIGKILL still leaves no line — that case is what the heartbeat is for.
+
+Root cause of the gtm crashes themselves is still **unknown** — the evidence was destroyed by the
+vanishing window both times. The next crash will leave an exit code in `<role>-exits.log`.
 
 **The LANES_ENABLED guard:** `start` refuses (exit 3, loud message) unless `LANES_ENABLED=1`
 is set in `.env` (or the environment), or `--force` is passed for a supervised test. This is

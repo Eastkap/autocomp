@@ -84,11 +84,25 @@ while IFS=$'\t' read -r lane cyc status; do
     since=$(( (now - $(stat -c %Y "$lstamp")) / 3600 ))
     [ "$since" -lt "$LANE_MAX_H" ] && continue
   fi
-  echo "watchdog: lane ${lane} stale — last cycle ${lane_age_h}h ago (threshold ${LANE_MAX_H}h) — alerting"
+  echo "watchdog: lane ${lane} stale — last cycle ${lane_age_h}h ago (threshold ${LANE_MAX_H}h) — recovering + alerting"
+  # --- recover before alerting (U7b) --------------------------------------------------
+  # Detection alone left the engine down: gtm crashed 28 Jul and again 30 Jul, and both
+  # times an alert fired into the phone while nothing restarted the lane (the second
+  # outage ran ~11h). `lanes-tmux.sh ensure` respawns only MISSING/DEAD windows and is
+  # itself rate-limited per lane, so calling it here is safe and idempotent. Run it at
+  # most once per watchdog pass, whatever the number of stale lanes.
+  if [ -z "${ENSURE_OUT+x}" ]; then
+    if ENSURE_OUT="$(./tools/lanes-tmux.sh ensure 2>&1)"; then
+      ENSURE_OUT="auto-restart ran OK — ${ENSURE_OUT//$'\n'/; }"
+    else
+      ENSURE_OUT="auto-restart returned $? — ${ENSURE_OUT//$'\n'/; }"
+    fi
+    echo "watchdog: ${ENSURE_OUT}"
+  fi
   curl -fsS -m 10 \
     -H "Title: autocomp watchdog: lane ${lane} stale" \
     -H "Priority: high" \
-    -d "autocomp watchdog: lane ${lane} stale — last cycle ${lane_age_h}h ago (threshold ${LANE_MAX_H}h, last_status '${status:-?}'). Check tools/role-loop.sh, private/state/lane-runs/, and the lane's pause sentinel." \
+    -d "autocomp watchdog: lane ${lane} stale — last cycle ${lane_age_h}h ago (threshold ${LANE_MAX_H}h, last_status '${status:-?}'). ${ENSURE_OUT}. Check tools/role-loop.sh, private/state/lane-runs/${lane}-exits.log, and the lane's pause sentinel." \
     "https://ntfy.sh/${NTFY_TOPIC}" >/dev/null && touch "$lstamp" \
     || echo "watchdog: lane ${lane} alert push FAILED (curl) — not stamping." >&2
 done < <(printf '%s' "$lanes_json" \

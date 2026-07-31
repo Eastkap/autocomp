@@ -45,6 +45,21 @@ if [ -z "$ROLE" ] || [ ! -f "$PROMPT" ]; then
   exit 2
 fi
 
+# --- exit trace ----------------------------------------------------------------------
+# A lane runner that dies leaves nothing behind: its tmux window used to close outright,
+# taking the scrollback with it (gtm, 28 + 30 Jul — the second outage ran ~11h before a
+# tick noticed). remain-on-exit now keeps the pane, but a pane is not durable. Append one
+# line per exit to a file so the NEXT investigator has a timestamp and an exit code even
+# if the session is gone. SIGKILL still leaves nothing — that is what the heartbeat is for.
+mkdir -p private/state/lane-runs
+_exitlog="private/state/lane-runs/${ROLE}-exits.log"
+on_exit() {
+  local rc=$?
+  printf '%s [%s] runner EXIT rc=%s host=%s pid=%s\n' \
+    "$(date -u +%FT%TZ)" "$ROLE" "$rc" "$(hostname)" "$$" >>"$_exitlog" 2>/dev/null || true
+}
+trap on_exit EXIT
+
 URL="${SUPABASE_URL:-}"; KEY="${SUPABASE_SERVICE_KEY:-}"
 if [ -z "$URL" ] || [ -z "$KEY" ]; then
   echo "role-loop.sh: SUPABASE_URL / SUPABASE_SERVICE_KEY not set — lanes need the DB (lease, burn gate, heartbeat)." >&2

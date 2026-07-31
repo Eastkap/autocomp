@@ -53,6 +53,9 @@ fi
 # if the session is gone. SIGKILL still leaves nothing — that is what the heartbeat is for.
 mkdir -p private/state/lane-runs
 _exitlog="private/state/lane-runs/${ROLE}-exits.log"
+# lanes-tmux.sh passes LANES_SESSION explicitly; a non-default (test) session writes to its
+# own file so a self-test can never plant fake crash lines in the production forensic log.
+[ "${LANES_SESSION:-lanes}" != "lanes" ] && _exitlog="${_exitlog}.${LANES_SESSION}"
 on_exit() {
   local rc=$?
   printf '%s [%s] runner EXIT rc=%s host=%s pid=%s\n' \

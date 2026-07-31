@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# lanes-tmux.sh <start|stop|status> — VPS lane supervisor: all role lanes in ONE tmux
+# lanes-tmux.sh <start|ensure|stop|status> — VPS lane supervisor: all role lanes in ONE tmux
 # session ("lanes"), one window per role, each window running tools/role-loop.sh <role>.
 # Roles are DATA (plan R14): one window per tools/role-prompts/<role>.md.
 #
@@ -67,10 +67,10 @@ start_session() {  # create the session with one window per role
   for r in $ROLES; do
     # `exec` so the pane's group leader IS role-loop.sh (clean TERM targeting in stop).
     if [ "$first" = 1 ]; then
-      tmux new-session -d -s "$SESSION" -n "$r" -c "$REPO" "exec $REPO/tools/role-loop.sh $r"
+      tmux new-session -d -s "$SESSION" -n "$r" -c "$REPO" "exec env LANES_SESSION=$SESSION $REPO/tools/role-loop.sh $r"
       first=0
     else
-      tmux new-window -t "$SESSION" -n "$r" -c "$REPO" "exec $REPO/tools/role-loop.sh $r"
+      tmux new-window -t "$SESSION" -n "$r" -c "$REPO" "exec env LANES_SESSION=$SESSION $REPO/tools/role-loop.sh $r"
     fi
     keep_dead "$r"
   done
@@ -109,7 +109,10 @@ case "${1:-status}" in
         1) reason="pane dead" ;;
         *) reason="window missing" ;;
       esac
+      # Namespace the stamp by session: a throwaway test session must never rate-limit the
+      # real one's recovery (it did, for 60 minutes, the first time this was tested).
       stamp="private/state/.lane-${r}-respawn"
+      [ "$SESSION" != "lanes" ] && stamp="${stamp}.${SESSION}"
       if [ -f "$stamp" ]; then
         gap=$(( ( $(date +%s) - $(stat -c %Y "$stamp") ) / 60 ))
         if [ "$gap" -lt "$GAP_MIN" ]; then
@@ -118,7 +121,7 @@ case "${1:-status}" in
         fi
       fi
       [ "$state" = "1" ] && tmux kill-window -t "${SESSION}:${r}" 2>/dev/null || true
-      if tmux new-window -d -t "$SESSION" -n "$r" -c "$REPO" "exec $REPO/tools/role-loop.sh $r" 2>/dev/null; then
+      if tmux new-window -d -t "$SESSION" -n "$r" -c "$REPO" "exec env LANES_SESSION=$SESSION $REPO/tools/role-loop.sh $r" 2>/dev/null; then
         keep_dead "$r"; touch "$stamp"
         echo "$r: $reason — RESPAWNED"
       else

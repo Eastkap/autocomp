@@ -71,6 +71,31 @@ if [ -z "$lanes_json" ]; then
   echo "watchdog: lanes fetch failed — skipping lane checks this run (no false alerts)." >&2
   exit 0
 fi
+# --- 2a) self-heal FIRST, on every pass (U7b) -------------------------------------------
+# Recovery must NOT hang off the staleness threshold. It did in the first cut of this, and
+# the arithmetic was embarrassing: gtm cycles every 6h, LANE_MAX_H is 8h, and the per-lane
+# alert stamp `continue`d *before* the restart — so a crashed lane waited up to 8h to be
+# touched and, if the restart failed, another 8h before anything tried again. Against the
+# 10.7h outage this was written for it would have saved ~2.7h.
+# `ensure` is free (a few tmux calls, no tokens), idempotent, and rate-limited per role, so
+# the right cadence is simply every watchdog pass — recovery latency becomes the cron's 30
+# minutes and the heartbeat threshold governs only when to wake the human.
+# Guard: only when the session ALREADY exists. A deliberate `lanes-tmux.sh stop` must stay
+# stopped — the watchdog restores crashed windows, it does not overrule the owner.
+ENSURE_OUT="auto-restart not attempted (tmux session '${LANES_SESSION:-lanes}' absent — deliberate stop is respected)"
+if tmux has-session -t "${LANES_SESSION:-lanes}" 2>/dev/null; then
+  if _eout="$(./tools/lanes-tmux.sh ensure 2>&1)"; then
+    ENSURE_OUT="auto-restart ran OK — ${_eout//$'\n'/; }"
+  else
+    _erc=$?
+    ENSURE_OUT="auto-restart returned ${_erc} — ${_eout//$'\n'/; }"
+  fi
+  case "$ENSURE_OUT" in
+    *RESPAWNED*|*FAILED*|*RATE-LIMITED*) echo "watchdog: ${ENSURE_OUT}" ;;   # only log when it did something
+  esac
+fi
+
+# --- 2b) alert on lanes that are still stale --------------------------------------------
 while IFS=$'\t' read -r lane cyc status; do
   [ -n "$lane" ] || continue
   [ "$status" = "paused" ] && continue                     # deliberate pause, not death
@@ -78,27 +103,14 @@ while IFS=$'\t' read -r lane cyc status; do
   cyc_s="$(date -d "$cyc" +%s 2>/dev/null)" || continue    # unparseable -> skip, no false alert
   lane_age_h=$(( (now - cyc_s) / 3600 ))
   [ "$lane_age_h" -lt "$LANE_MAX_H" ] && continue
-  # rate-limit per lane (same stamp pattern as the tick alert)
+  # rate-limit per lane (same stamp pattern as the tick alert) — gates only the PUSH now,
+  # never the restart above.
   lstamp="private/state/.watchdog-lane-${lane}-last-alert"
   if [ -f "$lstamp" ]; then
     since=$(( (now - $(stat -c %Y "$lstamp")) / 3600 ))
     [ "$since" -lt "$LANE_MAX_H" ] && continue
   fi
-  echo "watchdog: lane ${lane} stale — last cycle ${lane_age_h}h ago (threshold ${LANE_MAX_H}h) — recovering + alerting"
-  # --- recover before alerting (U7b) --------------------------------------------------
-  # Detection alone left the engine down: gtm crashed 28 Jul and again 30 Jul, and both
-  # times an alert fired into the phone while nothing restarted the lane (the second
-  # outage ran ~11h). `lanes-tmux.sh ensure` respawns only MISSING/DEAD windows and is
-  # itself rate-limited per lane, so calling it here is safe and idempotent. Run it at
-  # most once per watchdog pass, whatever the number of stale lanes.
-  if [ -z "${ENSURE_OUT+x}" ]; then
-    if ENSURE_OUT="$(./tools/lanes-tmux.sh ensure 2>&1)"; then
-      ENSURE_OUT="auto-restart ran OK — ${ENSURE_OUT//$'\n'/; }"
-    else
-      ENSURE_OUT="auto-restart returned $? — ${ENSURE_OUT//$'\n'/; }"
-    fi
-    echo "watchdog: ${ENSURE_OUT}"
-  fi
+  echo "watchdog: lane ${lane} stale — last cycle ${lane_age_h}h ago (threshold ${LANE_MAX_H}h) — alerting"
   curl -fsS -m 10 \
     -H "Title: autocomp watchdog: lane ${lane} stale" \
     -H "Priority: high" \

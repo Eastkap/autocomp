@@ -23,6 +23,12 @@ from an interactive tick:
   run alongside this tick until cutover. Two hard rules for this window:
   (a) **Skip any card with a non-empty `tags` array** — role-tagged cards belong to the lanes
   (they claim atomically; you do not). Treat them as WAIT in your board verdicts, never execute.
-  (b) **Dispatch no repo-writing subagents while the CTO lane's heartbeat is fresh** (<8h:
-  `tools/context.sh read` or curl `autocomp.lanes` for lane=cto `last_cycle_at`) — the CTO lane
-  is the single repo writer. Ledger/approvals appends go through `tools/append.sh`.
+  (b) **Write no tracked repo file — and dispatch no repo-writing subagent — whenever the CTO
+  lane is unpaused** (i.e. `private/state/.lane-cto-pause` is absent; it was removed 2026-08-01,
+  Tick 136). The CTO lane is the single repo writer, and a 24h lane interval means an
+  "is its heartbeat fresh?" test would leave the tick believing it was free to write for most of
+  every day — two repo writers, which is exactly what the cutover card `8b6275e0` warns against.
+  The pause sentinel, not the heartbeat, is the correct signal: absent = CTO owns the repo.
+  If the sentinel is present again (CTO re-paused), the tick is the fallback repo writer.
+  Either way, `private/` is gitignored, so ledger/approvals/memory work is always allowed —
+  through `tools/append.sh` for shared files.

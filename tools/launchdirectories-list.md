@@ -164,3 +164,33 @@ category (Free / Free + Paid / Paid), tags, upvotes/voteScore, screenshotUrl, lo
 - The real wall is Turnstile/hCaptcha/reCAPTCHA at *signup*, not logins — datacenter IP fails image grids;
   residential homelab TRAWL improves odds. OAuth-only dirs need the boseclaw Google/GitHub profile.
 - Never fabricate traction numbers on a form; use measured or omit.
+
+---
+
+## Second-source scrape — startupsubmit.app + ideaproof.io (2026-07-30, gtm lane)
+
+**Why:** this master list came from ONE aggregator (launchdirectories.com). Both tiers were
+finished by ticks 121/122, and the lane started calling the whole directory frontier exhausted —
+the same over-generalisation `private/memory/partial-probe-is-not-exhaustion.md` was written
+about. `tools/gtm-sources.md` names two aggregators that had NEVER been scraped. Scraped both.
+
+**Sources:**
+- `https://startupsubmit.app/best-startup-directories` — HTTP 200, free list = **15** directories
+  (their paid service claims a 220+/300+ DB; the rest is behind a $99 gate, not readable).
+  11 of the 15 were already classified here. **4 were new to us.**
+- `https://ideaproof.io/tools/category/launch-directories` — HTTP 200 but **DUD SOURCE**: the URL
+  resolves to IdeaProof's own marketing page (their pricing/FAQ/testimonials), no directory
+  listing of any kind. Do not re-scrape; drop it from `tools/gtm-sources.md`.
+
+**The 4 new directories, all probed by plain HTTP this cycle. None is free-submittable by us.**
+
+| Directory | URL | DR | Follow | Pricing | Status (WeeklyBrief) |
+|---|---|--:|:--:|---|---|
+| Trustpilot | https://business.trustpilot.com | 92 | — | Free tier | NOT SUBMITTED — genuine free lane ("Create Your Free Account", "at no cost to get started", and their own pitch is GEO: "Improve how your business appears in AI answers and search results"). Blocked on ACCOUNT CREATION: signup form is JS-rendered (0 static inputs in SSR) + email verification. Account creation is worker-2 gated regardless of owner approval → routed to CEO, not attempted. Best new candidate by far. |
+| Crunchbase | https://www.crunchbase.com | 91 | — | Free | NOT SUBMITTED — boseclaw account already EXISTS (created Jul 12 for DinnerElite) but Crunchbase will not accept a company until the account is "enabled for contributions" (needs a social-profile link + ~1 business day manual review). Same account gates weeklybrief. Already boarded as card e6e98a01 (human, optional). |
+| F6S | https://www.f6s.com | 72 | — | Free | DRAINER-GATED — hard bot wall: HTTP **405** to every path tried (`/`, `/signup`, `/join`, `/company/signup`, `/startups`) with browser UA + Accept headers; body is a `<title>Checking your browser</title>` interstitial carrying `captcha-challenge=1`. `/sitemap.xml` 400. Nothing readable over plain HTTP; needs Camoufox/TRAWL (homelab worker down ~290h). |
+| Futurepedia | https://www.futurepedia.io | 72 | — | **Paid only** | **KILLED — money gate, far over the Hundred-Dollar Test.** `/submit-tool` HTTP 200 and fully readable: the only two lanes are Basic **$247** (marked *Sold Out*) and Verified **$497** one-time, plus custom-priced Enterprise. No free lane anywhere on the page; the "Do you offer free listings?" FAQ body is not server-rendered. Not staged as a PENDING — $247 is not a $100-test call worth the owner's attention. Dedup checked first: `/tool/weekly-brief` 404. |
+
+**Net:** the directory frontier is genuinely wider than this list recorded — but every newly-found
+row is gated on account-creation, a bot wall, or money. Zero new drainer-free submissions exist.
+That is now positive evidence, not an assumption from a sample.

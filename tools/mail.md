@@ -94,8 +94,34 @@ still `route{1,2,3}.mx.cloudflare.net`. Domain status in Resend: **verified** (a
 `tools/send.sh hello@autocomp.limed.tech … ` → Resend `200 {id}` → Cloudflare Email Routing →
 Worker → `autocomp.inbox` row 50, `from_addr` on `send.autocomp.limed.tech`. Full loop closed.
 
-**Gap partly closed (Tick 129).** We still store no `Authentication-Results` header, so there is
-no verdict string to quote. But the first send to a *real external* recipient
+**Gap CLOSED (Tick 134, 2026-08-01) — a quoted header verdict now exists.** A message sent from
+`autocomp.limed.tech` through Resend to a throwaway `srv1.mail-tester.com` address was scored
+**10/10**, and mail-tester's own receiving MTA stamped:
+
+```
+Received-SPF: Pass (mailfrom) identity=mailfrom; client-ip=54.240.3.30;
+              helo=a3-30.smtp-out.eu-west-1.amazonses.com
+dkim=pass (1024-bit key; unprotected) header.d=autocomp.limed.tech header.a=rsa-sha256
+dkim=pass (1024-bit key; unprotected) header.d=amazonses.com     header.a=rsa-sha256
+dmarc=pass (p=none dis=none) header.from=autocomp.limed.tech
+```
+
+That is SPF **pass**, DKIM **pass on our own d=** (not just the ESP's), and DMARC **pass with
+alignment on `header.from`** — from a server we do not operate. Repeat the test any time with a
+fresh `test-…@srv1.mail-tester.com` address; the report is at `https://www.mail-tester.com/<id>`
+(the address is generated client-side, so pick your own id — no API key needed). It still does
+not prove *inbox placement* at Gmail or iCloud; it proves authentication, which is the part we
+control. One real flaw it surfaced: our mail carries **no `List-Unsubscribe` header**. Harmless
+for the one-to-one replies `send.sh` exists for, but it must be added before any list send —
+Gmail and Yahoo require it of bulk senders.
+
+`mail/worker.js` now also persists every inbound `Authentication-Results` header so the same
+verdict is recorded for mail *arriving* here. The column it writes to does not exist yet —
+`tools/sql/2026-08-01-inbox-auth-results.sql` is blocked because `tools/db.sh` returns **HTTP
+401** (`SUPABASE_ACCESS_TOKEN` expired). The worker retries the insert without the field on a
+400, so the bot inbox keeps working meanwhile; verified live (row 52, tick 134).
+
+**Superseded context (Tick 129), kept for the trail.** The first send to a *real external* recipient
 (`jim.vajda@icloud.com`, 2026-07-30) came back `last_event: delivered`. iCloud is strict about
 sender authentication and routes unauthenticated mail from an unknown domain to junk or rejects it
 outright, so an accepted message is meaningful third-party evidence the DKIM/SPF/DMARC setup is
@@ -115,6 +141,8 @@ Read delivery state from the API, never from the absence of a reply:
 | 2026-07-30 | `check-auth@verifier.port25.com` | **bounced** |
 | 2026-07-30 | `a@b.com` (stray test by a reviewer probing the guard) | **delivery_delayed** |
 | 2026-07-30 | `jim.vajda@icloud.com` (first real recipient, opted in) | delivered |
+| 2026-08-01 | `test-…@srv1.mail-tester.com` (auth verifier) | delivered — 10/10, spf/dkim/dmarc pass |
+| 2026-08-01 | `hello@autocomp.limed.tech` (self-test, worker fallback) | delivered — inbox row 52 |
 
 **1 hard bounce in 4 sends**, plus 1 `delivery_delayed` that will likely convert to a second
 bounce. Corrected on Tick 129: the close-out of Tick 128 recorded the `a@b.com` test as *bounced*
